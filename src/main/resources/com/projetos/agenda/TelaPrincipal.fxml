@@ -16,7 +16,7 @@
       </ImageView>
    </HBox>
     <HBox alignment="CENTER" prefHeight="57.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <MenuBar fx:id="barraDeMenu">
+        <MenuBar fx:id="barraDeMenu" stylesheets="@styles/Styles.css">
             <Menu fx:id="menuArquivo" mnemonicParsing="false" text="Arquivo">
                 <MenuItem fx:id="menuItemContato" mnemonicParsing="false" onAction="#acessarContato" text="Contato">
                <accelerator>
@@ -40,25 +40,25 @@
                </accelerator></MenuItem>
             </Menu>
             <Menu fx:id="menuRelatorio" mnemonicParsing="false" text="Relatórios">
-                <MenuItem fx:id="menuItemContatoGeral" mnemonicParsing="false" onAction="#acessarRelatorioContatoGeral" text="Contatos Geral">
+                <MenuItem fx:id="menuItemRelatorioContatoGeral" mnemonicParsing="false" onAction="#acessarRelatorioContatoGeral" text="Contatos Geral">
                <accelerator>
                   <KeyCodeCombination alt="UP" code="G" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                </accelerator></MenuItem>
-                <MenuItem fx:id="menuItemContatoEndereco" mnemonicParsing="false" onAction="#acessarRelatorioContatoEndereco" text="Contatos Endereço">
+                <MenuItem fx:id="menuItemRelatorioContatoEndereco" mnemonicParsing="false" onAction="#acessarRelatorioContatoEndereco" text="Contatos Endereço">
                <accelerator>
                   <KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                </accelerator></MenuItem>
-                <MenuItem fx:id="menuItemContatoTelefone" mnemonicParsing="false" onAction="#acessarRelatorioContatoTelefone" text="Contatos Telefone">
+                <MenuItem fx:id="menuItemRelatorioContatoTelefone" mnemonicParsing="false" onAction="#acessarRelatorioContatoTelefone" text="Contatos Telefone">
                <accelerator>
                   <KeyCodeCombination alt="UP" code="T" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                </accelerator></MenuItem>
-                <MenuItem fx:id="menuItemContatoTipo" mnemonicParsing="false" onAction="#acessarRelatorioContatoTipo" text="Contatos Tipo">
+                <MenuItem fx:id="menuItemRelatorioContatoTipo" mnemonicParsing="false" onAction="#acessarRelatorioContatoTipo" text="Contatos Tipo">
                <accelerator>
                   <KeyCodeCombination alt="UP" code="I" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                </accelerator></MenuItem>
             </Menu>
             <Menu fx:id="menuSobre" mnemonicParsing="false" text="Sobre">
-                <MenuItem fx:id="menuItemSistema" mnemonicParsing="false" onAction="#acessarSobreSistema" text="Sistema">
+                <MenuItem fx:id="menuItemSobreSistema" mnemonicParsing="false" onAction="#acessarSobreSistema" text="Sistema">
                <accelerator>
                   <KeyCodeCombination alt="UP" code="A" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                </accelerator></MenuItem>

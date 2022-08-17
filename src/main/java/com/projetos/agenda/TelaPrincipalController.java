@@ -6,8 +6,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class TelaPrincipalController implements Initializable {
@@ -29,17 +32,17 @@ public class TelaPrincipalController implements Initializable {
     @FXML
     public Menu menuRelatorio;
     @FXML
-    public MenuItem menuItemContatoGeral;
+    public MenuItem menuItemRelatorioContatoGeral;
     @FXML
-    public MenuItem menuItemContatoEndereco;
+    public MenuItem menuItemRelatorioContatoEndereco;
     @FXML
-    public MenuItem menuItemContatoTelefone;
+    public MenuItem menuItemRelatorioContatoTelefone;
     @FXML
-    public MenuItem menuItemContatoTipo;
+    public MenuItem menuItemRelatorioContatoTipo;
     @FXML
     public Menu menuSobre;
     @FXML
-    public MenuItem menuItemSistema;
+    public MenuItem menuItemSobreSistema;
 
     /**
      * Called to initialize a controller after its root element has been
@@ -52,7 +55,26 @@ public class TelaPrincipalController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Image menuItemContatoIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("icons/iconeMenuContato.png")));
+        Image menuItemTipoContatoIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("icons/iconeMenuContatoTipo.png")));
+        Image menuItemCidadeIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("icons/iconeMenuCidade.png")));
+        Image menuItemUsuarioIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("icons/iconeMenuUsuario.png")));
+        Image menuItemSairIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("icons/iconeMenuSair.png")));
+        Image menuItemRelatorioIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("icons/iconeMenuRelatorio.png")));
+        Image menuItemSobreSistemaIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("icons/iconeMenuSobre.png")));
 
+        menuItemContato.setGraphic(new ImageView(menuItemContatoIcon));
+        menuItemTipoContato.setGraphic(new ImageView(menuItemTipoContatoIcon));
+        menuItemCidade.setGraphic(new ImageView(menuItemCidadeIcon));
+        menuItemUsuario.setGraphic(new ImageView(menuItemUsuarioIcon));
+        menuItemSair.setGraphic(new ImageView(menuItemSairIcon));
+
+        menuItemRelatorioContatoGeral.setGraphic(new ImageView(menuItemRelatorioIcon));
+        menuItemRelatorioContatoEndereco.setGraphic(new ImageView(menuItemRelatorioIcon));
+        menuItemRelatorioContatoTelefone.setGraphic(new ImageView(menuItemRelatorioIcon));
+        menuItemRelatorioContatoTipo.setGraphic(new ImageView(menuItemRelatorioIcon));
+
+        menuItemSobreSistema.setGraphic(new ImageView(menuItemSobreSistemaIcon));
 
     }
 

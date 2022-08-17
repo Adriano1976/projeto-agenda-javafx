@@ -7,5 +7,6 @@ module com.projetos.agenda {
     requires org.kordamp.bootstrapfx.core;
 
     opens com.projetos.agenda to javafx.fxml;
+    opens com.projetos.agenda.icons to javafx.fxml;
     exports com.projetos.agenda;
 }
