@@ -12,7 +12,8 @@ public class MainApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("TelaPrincipal.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+        stage.setTitle("Agenda de Contatos");
+        stage.setMaximized(true);
         stage.setScene(scene);
         stage.show();
     }
