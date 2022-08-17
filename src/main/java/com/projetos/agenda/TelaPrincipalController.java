@@ -1,14 +1,23 @@
 package com.projetos.agenda;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.fxml.Initializable;
 
-public class TelaPrincipalController {
-    @FXML
-    private Label welcomeText;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+public class TelaPrincipalController implements Initializable {
+
+    /**
+     * Called to initialize a controller after its root element has been
+     * completely processed.
+     *
+     * @param location  The location used to resolve relative paths for the root object, or
+     *                  {@code null} if the location is not known.
+     * @param resources The resources used to localize the root object, or {@code null} if
+     *                  the root object was not localized.
+     */
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 }
