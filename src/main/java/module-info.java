@@ -8,5 +8,8 @@ module com.projetos.agenda {
 
     opens com.projetos.agenda to javafx.fxml;
     opens com.projetos.agenda.icons to javafx.fxml;
+    opens com.projetos.agenda.controller to javafx.fxml;
+
     exports com.projetos.agenda;
+    exports com.projetos.agenda.controller;
 }
