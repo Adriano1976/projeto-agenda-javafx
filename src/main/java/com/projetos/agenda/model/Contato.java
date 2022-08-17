@@ -12,7 +12,7 @@ public class Contato {
     private Date nascimento;
     private String telefone1;
     private String telefone2;
-    int idContato;
+    int idTipoContato;
 
     public Long getId() {
         return id;
@@ -86,11 +86,11 @@ public class Contato {
         this.telefone2 = telefone2;
     }
 
-    public int getIdContato() {
-        return idContato;
+    public int getIdTipoContato() {
+        return idTipoContato;
     }
 
-    public void setIdContato(int idContato) {
-        this.idContato = idContato;
+    public void setIdTipoContato(int idTipoContato) {
+        this.idTipoContato = idTipoContato;
     }
 }
