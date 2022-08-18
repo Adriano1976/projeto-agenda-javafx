@@ -1,7 +1,15 @@
 package com.projetos.agenda.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "tipo_contato")
 public class TipoContato {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "descricao", length = 100, nullable = false)
     private String descricao;
 
     public Long getId() {

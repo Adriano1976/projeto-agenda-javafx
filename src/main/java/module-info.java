@@ -5,6 +5,7 @@ module com.projetos.agenda {
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
+    requires java.persistence;
 
     opens com.projetos.agenda to javafx.fxml;
     opens com.projetos.agenda.icons to javafx.fxml;
