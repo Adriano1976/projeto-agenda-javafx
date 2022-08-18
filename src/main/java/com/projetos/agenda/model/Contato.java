@@ -1,18 +1,44 @@
 package com.projetos.agenda.model;
 
+import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
+@Entity
+@Table(name = "contato")
 public class Contato {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
+
+    @Column(name = "descricao", length = 100, nullable = false)
     private String descricao;
+
+    @Column(name = "endereco", length = 100, nullable = true)
     private String endereco;
+
+    @Column(name = "numero_residencia", length = 15, nullable = true)
     private int numero;
-    private int idCidade;
+
+    @OneToOne
+    private Long idCidade;
+
+    @Column(name = "email", length = 50, nullable = true)
     private String email;
-    private Date nascimento;
-    private String telefone1;
-    private String telefone2;
-    int idTipoContato;
+
+    @Column(name = "data_nascimento", nullable = true)
+    private LocalDate nascimento;
+
+    @Column(name = "telefone1", length = 11, nullable = true)
+    private Long telefone1;
+
+    @Column(name = "telefone2", length = 11, nullable = true)
+    private Long telefone2;
+
+    @OneToOne
+    Long idTipoContato;
 
     public Long getId() {
         return id;
@@ -46,11 +72,11 @@ public class Contato {
         this.numero = numero;
     }
 
-    public int getIdCidade() {
+    public Long getIdCidade() {
         return idCidade;
     }
 
-    public void setIdCidade(int idCidade) {
+    public void setIdCidade(Long idCidade) {
         this.idCidade = idCidade;
     }
 
@@ -62,35 +88,35 @@ public class Contato {
         this.email = email;
     }
 
-    public Date getNascimento() {
+    public LocalDate getNascimento() {
         return nascimento;
     }
 
-    public void setNascimento(Date nascimento) {
+    public void setNascimento(LocalDate nascimento) {
         this.nascimento = nascimento;
     }
 
-    public String getTelefone1() {
+    public Long getTelefone1() {
         return telefone1;
     }
 
-    public void setTelefone1(String telefone1) {
+    public void setTelefone1(Long telefone1) {
         this.telefone1 = telefone1;
     }
 
-    public String getTelefone2() {
+    public Long getTelefone2() {
         return telefone2;
     }
 
-    public void setTelefone2(String telefone2) {
+    public void setTelefone2(Long telefone2) {
         this.telefone2 = telefone2;
     }
 
-    public int getIdTipoContato() {
+    public Long getIdTipoContato() {
         return idTipoContato;
     }
 
-    public void setIdTipoContato(int idTipoContato) {
+    public void setIdTipoContato(Long idTipoContato) {
         this.idTipoContato = idTipoContato;
     }
 }
