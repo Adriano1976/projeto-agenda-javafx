@@ -15,8 +15,6 @@ public class ContatoController implements Initializable {
     @FXML
     public TextField tfId;
     @FXML
-    public TextField tfDescricao;
-    @FXML
     public Button btnNovo;
     @FXML
     public Button btnSalvar;

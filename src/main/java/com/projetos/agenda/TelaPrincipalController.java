@@ -2,13 +2,19 @@ package com.projetos.agenda;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -80,18 +86,22 @@ public class TelaPrincipalController implements Initializable {
 
     @FXML
     public void acessarContato(ActionEvent actionEvent) {
+        abrirFormulario("contato_view");
     }
 
     @FXML
     public void acessarTipoContato(ActionEvent actionEvent) {
+        abrirFormulario("tipo_contato_view");
     }
 
     @FXML
     public void acessarCidade(ActionEvent actionEvent) {
+        abrirFormulario("cidade_view");
     }
 
     @FXML
     public void acessarUsuario(ActionEvent actionEvent) {
+        abrirFormulario("usuario_view");
     }
 
     @FXML
@@ -116,5 +126,24 @@ public class TelaPrincipalController implements Initializable {
 
     @FXML
     public void acessarSobreSistema(ActionEvent actionEvent) {
+    }
+
+    public void abrirFormulario(String formulario) {
+        try {
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(formulario + ".fxml")));
+            Image applicationIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("icons/iconeAplicacao..png")));
+            Stage stage = new Stage();
+
+            stage.setScene(new Scene(root));
+            stage.setTitle("Formulario");
+            stage.getIcons().add(applicationIcon);
+            stage.setResizable(false);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }
