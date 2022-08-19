@@ -1,10 +1,11 @@
 package com.projetos.agenda.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "tipo_contato")
-public class TipoContato {
+public class TipoContato implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

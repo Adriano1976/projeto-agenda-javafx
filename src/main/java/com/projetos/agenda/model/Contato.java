@@ -1,11 +1,12 @@
 package com.projetos.agenda.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "contato")
-public class Contato {
+public class Contato implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
