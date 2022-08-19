@@ -6,6 +6,7 @@ module com.projetos.agenda {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
     requires java.persistence;
+    requires org.hibernate.orm.core;
 
     opens com.projetos.agenda to javafx.fxml;
     opens com.projetos.agenda.icons to javafx.fxml;
