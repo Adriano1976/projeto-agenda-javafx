@@ -7,11 +7,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class CidadeController implements Initializable {
+    @FXML
+    public HBox lbTitulo;
     @FXML
     public TextField tfId;
     @FXML
@@ -30,6 +33,7 @@ public class CidadeController implements Initializable {
     public ComboBox cbUf;
     @FXML
     public TextField tfCep;
+
 
     /**
      * Called to initialize a controller after its root element has been
