@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="556.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projetos.agenda.controller.ContatoController">
-    <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: #00b6b6; -fx-border-color: #000000;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <HBox fx:id="lbTitulo" alignment="CENTER" prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: #00b6b6; -fx-border-color: #000000;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <Label text="Título">
             <font>
                 <Font name="System Bold" size="24.0" />
