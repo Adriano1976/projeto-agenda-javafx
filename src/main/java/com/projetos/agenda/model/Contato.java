@@ -1,6 +1,6 @@
 package com.projetos.agenda.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -23,7 +23,7 @@ public class Contato implements Serializable {
     private int numero;
 
     @OneToOne
-    private Long idCidade;
+    private Cidade Cidade;
 
     @Column(name = "email", length = 50, nullable = true)
     private String email;
@@ -38,7 +38,10 @@ public class Contato implements Serializable {
     private Long telefone2;
 
     @OneToOne
-    Long idTipoContato;
+    private TipoContato TipoContato;
+
+    public Contato() {
+    }
 
     public Long getId() {
         return id;
@@ -72,12 +75,12 @@ public class Contato implements Serializable {
         this.numero = numero;
     }
 
-    public Long getIdCidade() {
-        return idCidade;
+    public Cidade getCidade() {
+        return Cidade;
     }
 
-    public void setIdCidade(Long idCidade) {
-        this.idCidade = idCidade;
+    public void setCidade(Cidade Cidade) {
+        this.Cidade = Cidade;
     }
 
     public String getEmail() {
@@ -112,11 +115,11 @@ public class Contato implements Serializable {
         this.telefone2 = telefone2;
     }
 
-    public Long getIdTipoContato() {
-        return idTipoContato;
+    public TipoContato getTipoContato() {
+        return TipoContato;
     }
 
-    public void setIdTipoContato(Long idTipoContato) {
-        this.idTipoContato = idTipoContato;
+    public void setTipoContato(TipoContato TipoContato) {
+        this.TipoContato = TipoContato;
     }
 }
