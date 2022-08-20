@@ -1,6 +1,6 @@
 package com.projetos.agenda.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -18,6 +18,9 @@ public class Cidade implements Serializable {
 
     @Column(name = "cep", length = 8, nullable = false)
     private Long cep;
+
+    public Cidade() {
+    }
 
     public Long getId() {
         return id;
