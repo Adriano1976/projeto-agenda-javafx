@@ -1,6 +1,6 @@
 package com.projetos.agenda.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -12,6 +12,9 @@ public class TipoContato implements Serializable {
 
     @Column(name = "descricao", length = 100, nullable = false)
     private String descricao;
+
+    public TipoContato() {
+    }
 
     public Long getId() {
         return id;
