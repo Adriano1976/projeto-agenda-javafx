@@ -15,7 +15,7 @@ public class MainApplication extends Application {
         FXMLLoader root = new FXMLLoader(MainApplication.class.getResource("TelaPrincipal.fxml"));
         Image applicationIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("icons/iconeAplicacao..png")));
 
-        Scene scene = new Scene(root.load(), 320, 240);
+        Scene scene = new Scene(root.load(), 650, 450);
         stage.getIcons().add(applicationIcon);
         stage.setTitle("Agenda de Contatos");
         stage.setMaximized(true);
