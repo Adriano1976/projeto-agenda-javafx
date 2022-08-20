@@ -1,6 +1,6 @@
 package com.projetos.agenda.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -17,6 +17,9 @@ public class Usuario implements Serializable {
 
     @Column(name = "senha", length = 8, nullable = false)
     private String senha;
+
+    public Usuario() {
+    }
 
     public Long getId() {
         return id;
