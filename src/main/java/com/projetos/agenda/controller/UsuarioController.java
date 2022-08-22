@@ -12,7 +12,7 @@ import javafx.scene.layout.HBox;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class UsuarioController implements Initializable {
+public class UsuarioController implements Initializable, ICadastro {
     @FXML
     public HBox lbTitulo;
     @FXML
@@ -60,5 +60,25 @@ public class UsuarioController implements Initializable {
 
     @FXML
     public void pesquisar(ActionEvent actionEvent) {
+    }
+
+    @Override
+    public void criarColunasTabela() {
+
+    }
+
+    @Override
+    public void atualizarTabela() {
+
+    }
+
+    @Override
+    public void setCamposFormulario() {
+
+    }
+
+    @Override
+    public void limparCamposFormulario() {
+
     }
 }

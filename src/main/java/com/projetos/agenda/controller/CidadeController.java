@@ -12,7 +12,7 @@ import javafx.scene.layout.HBox;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class CidadeController implements Initializable {
+public class CidadeController implements Initializable, ICadastro {
     @FXML
     public HBox lbTitulo;
     @FXML
@@ -63,5 +63,25 @@ public class CidadeController implements Initializable {
 
     @FXML
     public void pesquisar(ActionEvent actionEvent) {
+    }
+
+    @Override
+    public void criarColunasTabela() {
+
+    }
+
+    @Override
+    public void atualizarTabela() {
+
+    }
+
+    @Override
+    public void setCamposFormulario() {
+
+    }
+
+    @Override
+    public void limparCamposFormulario() {
+
     }
 }

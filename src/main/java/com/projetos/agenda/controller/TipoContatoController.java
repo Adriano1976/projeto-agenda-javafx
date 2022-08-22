@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class TipoContatoController implements Initializable {
+public class TipoContatoController implements Initializable, ICadastro {
     @FXML
     public Label lbTitulo;
     @FXML
@@ -65,5 +65,25 @@ public class TipoContatoController implements Initializable {
 
     @FXML
     public void pesquisar(ActionEvent actionEvent) {
+    }
+
+    @Override
+    public void criarColunasTabela() {
+
+    }
+
+    @Override
+    public void atualizarTabela() {
+
+    }
+
+    @Override
+    public void setCamposFormulario() {
+
+    }
+
+    @Override
+    public void limparCamposFormulario() {
+
     }
 }
