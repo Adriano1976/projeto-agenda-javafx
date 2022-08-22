@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="AgendaFX" uuid="294deefe-5103-4a0b-a096-ce33cbfa4ef4">
-      <driver-ref>mysql.8</driver-ref>
+    <data-source source="LOCAL" name="AgendaFX" uuid="b626daca-53bb-4026-83cc-a745c87adc77">
+      <driver-ref>mysql_aurora</driver-ref>
       <synchronize>true</synchronize>
-      <imported>true</imported>
-      <remarks>Hibernate
-
-C:/Users/ADRIANO/IdeaProjects/Agenda/src/main/resources/META-INF/persistence.xml</remarks>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/agendafx</jdbc-url>
+      <configured-by-url>true</configured-by-url>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
+      <jdbc-additional-properties>
+        <property name="APPROVED_DRIVER" value="mysql_aurora" />
+      </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
