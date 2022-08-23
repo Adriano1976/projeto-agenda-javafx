@@ -1,21 +1,26 @@
 package com.projetos.agenda.controller;
 
+import com.projetos.agenda.dao.CrudGenericoDao;
+import com.projetos.agenda.model.Cidade;
+import com.projetos.agenda.util.Alerta;
 import com.projetos.agenda.util.Uf;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class CidadeController implements Initializable, ICadastro {
     @FXML
-    private HBox lbTitulo;
+    private Label lbTitulo;
     @FXML
     private TextField tfId;
     @FXML
@@ -29,11 +34,15 @@ public class CidadeController implements Initializable, ICadastro {
     @FXML
     private TextField tfPesquisa;
     @FXML
-    private TableView<?> tableView;
+    private TableView<Cidade> tableView;
     @FXML
     private ComboBox<String> cbUf;
     @FXML
     private TextField tfCep;
+
+    private final CrudGenericoDao<Cidade> dao = new CrudGenericoDao<>();
+    private Cidade objetoSelecionado = new Cidade();
+    private final ObservableList<Cidade> observableList = FXCollections.observableArrayList();
 
 
     /**
@@ -47,42 +56,112 @@ public class CidadeController implements Initializable, ICadastro {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        lbTitulo.setText("Cadastro de Cidade");
+        criarColunasTabela();
+        atualizarTabela();
+        setCamposFormulario();
         cbUf.setItems(Uf.gerarUf());
     }
 
     @FXML
     public void incluirResgistro(ActionEvent actionEvent) {
+        limparCamposFormulario();
     }
 
     @FXML
     public void salvarResgistro(ActionEvent actionEvent) {
+        Cidade objeto = new Cidade();
+
+        if (objetoSelecionado != null) {
+            objeto.setId(objetoSelecionado.getId());
+        }
+
+        objeto.setDescricao(tfDescricao.getText());
+        objeto.setCep(Long.parseLong(tfCep.getText()));
+        objeto.setUf(cbUf.getValue());
+
+        if (dao.salvar(objeto)) {
+            Alerta.msgInformacao("Registro gravado com sucesso!");
+        } else {
+            Alerta.msgInformacao("Ocorreu um erro ao tentar gravar o registro!");
+        }
+        atualizarTabela();
+        limparCamposFormulario();
     }
 
     @FXML
     public void excluirResgistro(ActionEvent actionEvent) {
+        if (Alerta.msgConfirmaExclusao(tfDescricao.getText())) {
+            dao.excluir(objetoSelecionado);
+            limparCamposFormulario();
+            atualizarTabela();
+            Alerta.msgInformacao("Registro excluido com sucesso!");
+        }
     }
 
     @FXML
-    public void pesquisar(ActionEvent actionEvent) {
+    public void filtrarRegistro(KeyEvent keyEvent) {
+        atualizarTabela();
+    }
+
+    @FXML
+    public void clicarTabela(MouseEvent mouseEvent) {
+        setCamposFormulario();
+    }
+
+    @FXML
+    public void moverTabela(KeyEvent keyEvent) {
+        setCamposFormulario();
     }
 
     @Override
     public void criarColunasTabela() {
+        TableColumn<Cidade, Long> columaId = new TableColumn<>("ID");
+        columaId.setMinWidth(40);
+        columaId.setMaxWidth(40);
+        TableColumn<Cidade, String> colunaDescricao = new TableColumn<>("DESCRIÇÃO");
+        TableColumn<Cidade, String> colunaUf = new TableColumn<>("UF");
+        columaId.setMinWidth(40);
+        columaId.setMaxWidth(40);
+        TableColumn<Cidade, String> colunaCep = new TableColumn<>("CEP");
 
+        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        tableView.getColumns().addAll(columaId, colunaDescricao, colunaUf, colunaCep);
+
+        columaId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colunaDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+        colunaUf.setCellValueFactory(new PropertyValueFactory<>("uf"));
+        colunaCep.setCellValueFactory(new PropertyValueFactory<>("cep"));
     }
 
     @Override
     public void atualizarTabela() {
-
+        observableList.clear();
+        List<Cidade> lista = dao.consultar(tfPesquisa.getText(), "Cidade");
+        observableList.addAll(lista);
+        tableView.getItems().setAll(observableList);
+        tableView.getSelectionModel().selectFirst();
     }
 
     @Override
     public void setCamposFormulario() {
+        if (!tableView.getItems().isEmpty()) {
+            objetoSelecionado = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex());
 
+            tfId.setText(String.valueOf(objetoSelecionado.getId()));
+            tfDescricao.setText(objetoSelecionado.getDescricao());
+            tfCep.setText(String.valueOf(objetoSelecionado.getCep()));
+            cbUf.setValue(objetoSelecionado.getUf());
+        }
     }
 
     @Override
     public void limparCamposFormulario() {
-
+        objetoSelecionado = null;
+        tfId.clear();
+        tfDescricao.clear();
+        tfCep.clear();
+        cbUf.getSelectionModel().select(-1);
+        tfDescricao.requestFocus();
     }
 }

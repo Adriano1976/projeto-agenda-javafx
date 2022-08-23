@@ -14,7 +14,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -38,7 +37,6 @@ public class TipoContatoController implements Initializable, ICadastro {
 
     private final CrudGenericoDao<TipoContato> dao = new CrudGenericoDao<>();
     private TipoContato objetoSelecionado = new TipoContato();
-    private List<TipoContato> listaTipos = new ArrayList<>();
     private final ObservableList<TipoContato> observableList = FXCollections.observableArrayList();
 
     /**
@@ -65,14 +63,14 @@ public class TipoContatoController implements Initializable, ICadastro {
 
     @FXML
     public void salvarResgistro(ActionEvent actionEvent) {
-        TipoContato tipoContato = new TipoContato();
+        TipoContato objeto = new TipoContato();
 
         if (objetoSelecionado != null) {
-            tipoContato.setId(objetoSelecionado.getId());
+            objeto.setId(objetoSelecionado.getId());
         }
 
-        tipoContato.setDescricao(tfDescricao.getText());
-        if (dao.salvar(tipoContato)) {
+        objeto.setDescricao(tfDescricao.getText());
+        if (dao.salvar(objeto)) {
             Alerta.msgInformacao("Registro gravado com sucesso!");
         } else {
             Alerta.msgInformacao("Ocorreu um erro ao tentar gravar o registro!");
@@ -100,6 +98,7 @@ public class TipoContatoController implements Initializable, ICadastro {
     public void clicarTabela(MouseEvent mouseEvent) {
         setCamposFormulario();
     }
+
     @FXML
     public void moverTabela(KeyEvent keyEvent) {
         setCamposFormulario();
@@ -122,8 +121,8 @@ public class TipoContatoController implements Initializable, ICadastro {
     @Override
     public void atualizarTabela() {
         observableList.clear();
-        listaTipos = dao.consultar(tfPesquisa.getText(), "TipoContato");
-        observableList.addAll(listaTipos);
+        List<TipoContato> lista = dao.consultar(tfPesquisa.getText(), "TipoContato");
+        observableList.addAll(lista);
         tableView.getItems().setAll(observableList);
         tableView.getSelectionModel().selectFirst();
     }
@@ -131,6 +130,7 @@ public class TipoContatoController implements Initializable, ICadastro {
     @Override
     public void setCamposFormulario() {
         objetoSelecionado = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex());
+
         tfId.setText(String.valueOf(objetoSelecionado.getId()));
         tfDescricao.setText(objetoSelecionado.getDescricao());
     }

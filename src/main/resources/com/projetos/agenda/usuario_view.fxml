@@ -13,8 +13,8 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="503.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projetos.agenda.controller.UsuarioController">
-    <HBox fx:id="lbTitulo" alignment="CENTER" prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: #00b6b6; -fx-border-color: #000000;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <Label text="Título">
+    <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: #00b6b6; -fx-border-color: #000000;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <Label fx:id="lbTitulo" text="Título">
             <font>
                 <Font name="System Bold" size="24.0" />
             </font>
@@ -52,7 +52,7 @@
                 </graphic>
             </Button>
         </HBox>
-        <TextField fx:id="tfPesquisa" alignment="TOP_CENTER" layoutX="23.0" layoutY="68.0" onAction="#pesquisar" style="-fx-background-radius: 20;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0" />
-        <TableView fx:id="tableView" layoutX="4.0" layoutY="110.0" prefHeight="233.0" prefWidth="594.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="110.0" />
+        <TextField fx:id="tfPesquisa" alignment="TOP_CENTER" layoutX="23.0" layoutY="68.0" onKeyReleased="#filtrarRegistro" style="-fx-background-radius: 20;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0" />
+        <TableView fx:id="tableView" layoutX="4.0" layoutY="110.0" onKeyReleased="#moverTabela" onMouseClicked="#clicarTabela" prefHeight="233.0" prefWidth="594.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="110.0" />
     </AnchorPane>
 </AnchorPane>
