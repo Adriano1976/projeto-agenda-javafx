@@ -59,7 +59,7 @@ public class TipoContatoDao {
         List lista;
         Session session = ConexaoBanco.getSessionFactory().openSession();
         session.beginTransaction();
-        lista = session.createQuery("from TipoContato ").getResultList();
+        lista = session.createQuery("from TipoContato order by descricao").getResultList();
         session.getTransaction().commit();
         session.close();
 
