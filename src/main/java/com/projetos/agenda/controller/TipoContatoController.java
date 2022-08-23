@@ -66,9 +66,14 @@ public class TipoContatoController implements Initializable, ICadastro {
     public void salvarResgistro(ActionEvent actionEvent) {
         TipoContato tipoContato = new TipoContato();
 
+        if (objetoSelecionado != null) {
+            tipoContato.setId(objetoSelecionado.getId());
+        }
+
         tipoContato.setDescricao(tfDescricao.getText());
         dao.salvar(tipoContato);
         atualizarTabela();
+        limparCamposFormulario();
     }
 
     @FXML
