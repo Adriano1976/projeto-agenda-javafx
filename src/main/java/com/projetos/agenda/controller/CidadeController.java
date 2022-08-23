@@ -1,5 +1,6 @@
 package com.projetos.agenda.controller;
 
+import com.projetos.agenda.util.Uf;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,25 +15,25 @@ import java.util.ResourceBundle;
 
 public class CidadeController implements Initializable, ICadastro {
     @FXML
-    public HBox lbTitulo;
+    private HBox lbTitulo;
     @FXML
-    public TextField tfId;
+    private TextField tfId;
     @FXML
-    public TextField tfDescricao;
+    private TextField tfDescricao;
     @FXML
-    public Button btnNovo;
+    private Button btnNovo;
     @FXML
-    public Button btnSalvar;
+    private Button btnSalvar;
     @FXML
-    public Button btnExcluir;
+    private Button btnExcluir;
     @FXML
-    public TextField tfPesquisa;
+    private TextField tfPesquisa;
     @FXML
-    public TableView tableView;
+    private TableView<?> tableView;
     @FXML
-    public ComboBox cbUf;
+    private ComboBox<String> cbUf;
     @FXML
-    public TextField tfCep;
+    private TextField tfCep;
 
 
     /**
@@ -46,7 +47,7 @@ public class CidadeController implements Initializable, ICadastro {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        cbUf.setItems(Uf.gerarUf());
     }
 
     @FXML
