@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.List;
@@ -35,7 +36,6 @@ public class TipoContatoController implements Initializable, ICadastro {
 
     private final TipoContatoDao dao = new TipoContatoDao();
     private final ObservableList<TipoContato> observableList = FXCollections.observableArrayList();
-    private final TipoContato objetoSelecionado = new TipoContato();
 
     /**
      * Called to initialize a controller after its root element has been
@@ -75,6 +75,10 @@ public class TipoContatoController implements Initializable, ICadastro {
         atualizarTabela();
     }
 
+    public void clicarTabela(MouseEvent mouseEvent) {
+        setCamposFormulario();
+    }
+
     @Override
     public void criarColunasTabela() {
         TableColumn<TipoContato, Long> columaId = new TableColumn<>("ID");
@@ -100,7 +104,9 @@ public class TipoContatoController implements Initializable, ICadastro {
 
     @Override
     public void setCamposFormulario() {
-
+        TipoContato objetoSelecionado = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex());
+        tfId.setText(String.valueOf(objetoSelecionado.getId()));
+        tfDescricao.setText(objetoSelecionado.getDescricao());
     }
 
     @Override

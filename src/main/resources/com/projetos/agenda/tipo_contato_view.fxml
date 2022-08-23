@@ -51,6 +51,6 @@
             </Button>
         </HBox>
         <TextField fx:id="tfPesquisa" layoutX="23.0" layoutY="68.0" onKeyReleased="#filtrarRegistro" promptText="Filtro de Pesquisa" style="-fx-background-radius: 20;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0" />
-        <TableView fx:id="tableView" layoutX="4.0" layoutY="110.0" prefHeight="233.0" prefWidth="594.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="110.0" />
+        <TableView fx:id="tableView" layoutX="4.0" layoutY="110.0" onMouseClicked="#clicarTabela" prefHeight="233.0" prefWidth="594.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="110.0" />
     </AnchorPane>
 </AnchorPane>
