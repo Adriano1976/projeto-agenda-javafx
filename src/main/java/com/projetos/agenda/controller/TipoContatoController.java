@@ -2,13 +2,17 @@ package com.projetos.agenda.controller;
 
 import com.projetos.agenda.dao.TipoContatoDao;
 import com.projetos.agenda.model.TipoContato;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class TipoContatoController implements Initializable, ICadastro {
@@ -29,7 +33,9 @@ public class TipoContatoController implements Initializable, ICadastro {
     @FXML
     public TableView<TipoContato> tableView;
 
-    TipoContatoDao dao = new TipoContatoDao();
+    private final TipoContatoDao dao = new TipoContatoDao();
+    private final ObservableList<TipoContato> observableList = FXCollections.observableArrayList();
+    private final TipoContato objetoSelecionado = new TipoContato();
 
     /**
      * Called to initialize a controller after its root element has been
@@ -44,6 +50,7 @@ public class TipoContatoController implements Initializable, ICadastro {
     public void initialize(URL location, ResourceBundle resources) {
         lbTitulo.setText("Cadastro de Tipo de Contato");
         criarColunasTabela();
+        atualizarTabela();
     }
 
     @FXML
@@ -56,6 +63,7 @@ public class TipoContatoController implements Initializable, ICadastro {
 
         tipoContato.setDescricao(tfDescricao.getText());
         dao.salvar(tipoContato);
+        atualizarTabela();
     }
 
     @FXML
@@ -63,7 +71,8 @@ public class TipoContatoController implements Initializable, ICadastro {
     }
 
     @FXML
-    public void pesquisar(ActionEvent actionEvent) {
+    public void filtrarRegistro(KeyEvent keyEvent) {
+        atualizarTabela();
     }
 
     @Override
@@ -79,7 +88,11 @@ public class TipoContatoController implements Initializable, ICadastro {
 
     @Override
     public void atualizarTabela() {
-
+        observableList.clear();
+        List<TipoContato> listaTipos = dao.consultar(tfPesquisa.getText());
+        observableList.addAll(listaTipos);
+        tableView.getItems().setAll(observableList);
+        tableView.getSelectionModel().selectFirst();
     }
 
     @Override
