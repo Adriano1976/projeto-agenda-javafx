@@ -21,6 +21,20 @@ public class TipoContatoDao {
         }
     }
 
+    public void excluir(TipoContato tipoContato) {
+        try {
+            Session session = ConexaoBanco.getSessionFactory().openSession();
+            session.beginTransaction();
+            session.remove(tipoContato);
+            session.getTransaction().commit();
+            session.clear();
+            System.out.println("Registro excluido com sucesso!");
+
+        } catch (Exception erro) {
+            System.out.println("Ocorreu o erro: " + erro);
+        }
+    }
+
     public List<TipoContato> consultar(String descricao) {
         List lista;
         Session session = ConexaoBanco.getSessionFactory().openSession();

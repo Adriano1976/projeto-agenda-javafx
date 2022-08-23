@@ -73,6 +73,9 @@ public class TipoContatoController implements Initializable, ICadastro {
 
     @FXML
     public void excluirResgistro(ActionEvent actionEvent) {
+        dao.excluir(objetoSelecionado);
+        limparCamposFormulario();
+        atualizarTabela();
     }
 
     @FXML
