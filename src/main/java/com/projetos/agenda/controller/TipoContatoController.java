@@ -13,6 +13,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -35,6 +36,8 @@ public class TipoContatoController implements Initializable, ICadastro {
     public TableView<TipoContato> tableView;
 
     private final TipoContatoDao dao = new TipoContatoDao();
+    private TipoContato objetoSelecionado = new TipoContato();
+    private List<TipoContato> listaTipos = new ArrayList<>();
     private final ObservableList<TipoContato> observableList = FXCollections.observableArrayList();
 
     /**
@@ -56,6 +59,7 @@ public class TipoContatoController implements Initializable, ICadastro {
 
     @FXML
     public void incluirResgistro(ActionEvent actionEvent) {
+        limparCamposFormulario();
     }
 
     @FXML
@@ -102,7 +106,7 @@ public class TipoContatoController implements Initializable, ICadastro {
     @Override
     public void atualizarTabela() {
         observableList.clear();
-        List<TipoContato> listaTipos = dao.consultar(tfPesquisa.getText());
+        listaTipos = dao.consultar(tfPesquisa.getText());
         observableList.addAll(listaTipos);
         tableView.getItems().setAll(observableList);
         tableView.getSelectionModel().selectFirst();
@@ -110,13 +114,16 @@ public class TipoContatoController implements Initializable, ICadastro {
 
     @Override
     public void setCamposFormulario() {
-        TipoContato objetoSelecionado = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex());
+        objetoSelecionado = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex());
         tfId.setText(String.valueOf(objetoSelecionado.getId()));
         tfDescricao.setText(objetoSelecionado.getDescricao());
     }
 
     @Override
     public void limparCamposFormulario() {
-
+        objetoSelecionado = null;
+        tfId.clear();
+        tfDescricao.clear();
+        tfDescricao.requestFocus();
     }
 }
