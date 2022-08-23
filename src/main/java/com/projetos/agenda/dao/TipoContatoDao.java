@@ -1,11 +1,15 @@
 package com.projetos.agenda.dao;
 
 import com.projetos.agenda.model.TipoContato;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.hibernate.Session;
 
 import java.util.List;
 
 public class TipoContatoDao {
+
+    private final ObservableList<TipoContato> observableList = FXCollections.observableArrayList();
 
     public boolean salvar(TipoContato tipoContato) {
         try {
@@ -49,5 +53,17 @@ public class TipoContatoDao {
         session.close();
 
         return lista;
+    }
+
+    public ObservableList<TipoContato> comboBox() {
+        List lista;
+        Session session = ConexaoBanco.getSessionFactory().openSession();
+        session.beginTransaction();
+        lista = session.createQuery("from TipoContato ").getResultList();
+        session.getTransaction().commit();
+        session.close();
+
+        observableList.addAll(lista);
+        return observableList;
     }
 }

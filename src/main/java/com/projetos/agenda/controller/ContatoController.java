@@ -1,5 +1,7 @@
 package com.projetos.agenda.controller;
 
+import com.projetos.agenda.dao.TipoContatoDao;
+import com.projetos.agenda.model.TipoContato;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -46,7 +48,9 @@ public class ContatoController implements Initializable, ICadastro {
     @FXML
     public TextField tfNascimento;
     @FXML
-    public ComboBox cbTipoContato;
+    public ComboBox<TipoContato> cbTipoContato;
+
+    private final TipoContatoDao dao = new TipoContatoDao();
 
 
     /**
@@ -60,7 +64,7 @@ public class ContatoController implements Initializable, ICadastro {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        cbTipoContato.setItems(dao.comboBox());
     }
 
     @FXML
