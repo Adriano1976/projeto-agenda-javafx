@@ -51,6 +51,7 @@ public class TipoContatoController implements Initializable, ICadastro {
         lbTitulo.setText("Cadastro de Tipo de Contato");
         criarColunasTabela();
         atualizarTabela();
+        setCamposFormulario();
     }
 
     @FXML
@@ -75,7 +76,12 @@ public class TipoContatoController implements Initializable, ICadastro {
         atualizarTabela();
     }
 
+    @FXML
     public void clicarTabela(MouseEvent mouseEvent) {
+        setCamposFormulario();
+    }
+    @FXML
+    public void moverTabela(KeyEvent keyEvent) {
         setCamposFormulario();
     }
 
