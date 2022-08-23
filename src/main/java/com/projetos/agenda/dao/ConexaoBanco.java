@@ -19,7 +19,7 @@ public class ConexaoBanco {
         configuracao.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/agendafx");
         configuracao.setProperty("hibernate.connection.username", "root");
         configuracao.setProperty("hibernate.connection.password", "251097anl");
-        configuracao.setProperty("hibernate.hbm2ddl", "create");
+        configuracao.setProperty("hibernate.hbm2ddl", "update");
         configuracao.setProperty("hibernate.show_sql", "true");
 
         // Indicando o mapeamento das classes.
