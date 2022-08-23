@@ -78,8 +78,11 @@ public class TipoContatoController implements Initializable, ICadastro {
     @Override
     public void criarColunasTabela() {
         TableColumn<TipoContato, Long> columaId = new TableColumn<>("ID");
+        columaId.setMinWidth(40);
+        columaId.setMaxWidth(40);
         TableColumn<TipoContato, String> colunaDescricao = new TableColumn<>("DESCRIÇÃO");
 
+        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         tableView.getColumns().addAll(columaId, colunaDescricao);
 
         columaId.setCellValueFactory(new PropertyValueFactory<>("id"));
