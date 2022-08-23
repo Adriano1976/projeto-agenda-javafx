@@ -7,17 +7,18 @@ import java.util.List;
 
 public class TipoContatoDao {
 
-    public void salvar(TipoContato tipoContato) {
+    public boolean salvar(TipoContato tipoContato) {
         try {
             Session session = ConexaoBanco.getSessionFactory().openSession();
             session.beginTransaction();
             session.merge(tipoContato);
             session.getTransaction().commit();
             session.close();
-            System.out.println("Registro gravado com sucesso!");
-
+            return true;
         } catch (Exception erro) {
             System.out.println("Ocorreu o erro: " + erro);
+            // Arquivo de log.
+            return false;
         }
     }
 

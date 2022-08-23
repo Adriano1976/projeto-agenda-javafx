@@ -2,6 +2,7 @@ package com.projetos.agenda.controller;
 
 import com.projetos.agenda.dao.TipoContatoDao;
 import com.projetos.agenda.model.TipoContato;
+import com.projetos.agenda.util.Alerta;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -71,7 +72,11 @@ public class TipoContatoController implements Initializable, ICadastro {
         }
 
         tipoContato.setDescricao(tfDescricao.getText());
-        dao.salvar(tipoContato);
+        if (dao.salvar(tipoContato)) {
+            Alerta.msgInformacao("Registro gravado com sucesso");
+        } else {
+            Alerta.msgInformacao("Ocorreu um erro ao tentar gravar o registro!");
+        }
         atualizarTabela();
         limparCamposFormulario();
     }
