@@ -1,6 +1,6 @@
 package com.projetos.agenda.controller;
 
-import com.projetos.agenda.dao.TipoContatoDao;
+import com.projetos.agenda.dao.CrudGenericoDao;
 import com.projetos.agenda.model.TipoContato;
 import com.projetos.agenda.util.Alerta;
 import javafx.collections.FXCollections;
@@ -36,7 +36,7 @@ public class TipoContatoController implements Initializable, ICadastro {
     @FXML
     public TableView<TipoContato> tableView;
 
-    private final TipoContatoDao dao = new TipoContatoDao();
+    private final CrudGenericoDao<TipoContato> dao = new CrudGenericoDao<>();
     private TipoContato objetoSelecionado = new TipoContato();
     private List<TipoContato> listaTipos = new ArrayList<>();
     private final ObservableList<TipoContato> observableList = FXCollections.observableArrayList();
@@ -73,7 +73,7 @@ public class TipoContatoController implements Initializable, ICadastro {
 
         tipoContato.setDescricao(tfDescricao.getText());
         if (dao.salvar(tipoContato)) {
-            Alerta.msgInformacao("Registro gravado com sucesso");
+            Alerta.msgInformacao("Registro gravado com sucesso!");
         } else {
             Alerta.msgInformacao("Ocorreu um erro ao tentar gravar o registro!");
         }
@@ -122,7 +122,7 @@ public class TipoContatoController implements Initializable, ICadastro {
     @Override
     public void atualizarTabela() {
         observableList.clear();
-        listaTipos = dao.consultar(tfPesquisa.getText());
+        listaTipos = dao.consultar(tfPesquisa.getText(), "TipoContato");
         observableList.addAll(listaTipos);
         tableView.getItems().setAll(observableList);
         tableView.getSelectionModel().selectFirst();
