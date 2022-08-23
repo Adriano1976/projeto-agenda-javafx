@@ -5,10 +5,8 @@ import com.projetos.agenda.model.TipoContato;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,7 +27,7 @@ public class TipoContatoController implements Initializable, ICadastro {
     @FXML
     public TextField tfPesquisa;
     @FXML
-    public TableView tableView;
+    public TableView<TipoContato> tableView;
 
     TipoContatoDao dao = new TipoContatoDao();
 
@@ -45,6 +43,7 @@ public class TipoContatoController implements Initializable, ICadastro {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         lbTitulo.setText("Cadastro de Tipo de Contato");
+        criarColunasTabela();
     }
 
     @FXML
@@ -69,7 +68,13 @@ public class TipoContatoController implements Initializable, ICadastro {
 
     @Override
     public void criarColunasTabela() {
+        TableColumn<TipoContato, Long> columaId = new TableColumn<>("ID");
+        TableColumn<TipoContato, String> colunaDescricao = new TableColumn<>("DESCRIÇÃO");
 
+        tableView.getColumns().addAll(columaId, colunaDescricao);
+
+        columaId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colunaDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
     }
 
     @Override
