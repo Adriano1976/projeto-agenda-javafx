@@ -1,6 +1,7 @@
 package com.projetos.agenda.controller;
 
-import com.projetos.agenda.dao.TipoContatoDao;
+import com.projetos.agenda.dao.ComboBoxGenericoDao;
+import com.projetos.agenda.model.Cidade;
 import com.projetos.agenda.model.TipoContato;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -36,7 +37,7 @@ public class ContatoController implements Initializable, ICadastro {
     @FXML
     public TextField tfNumero;
     @FXML
-    public ComboBox cbCidade;
+    public ComboBox<Cidade> cbCidade;
     @FXML
     public TextField tfUf;
     @FXML
@@ -50,7 +51,8 @@ public class ContatoController implements Initializable, ICadastro {
     @FXML
     public ComboBox<TipoContato> cbTipoContato;
 
-    private final TipoContatoDao dao = new TipoContatoDao();
+    private final ComboBoxGenericoDao<TipoContato> comboBoxTipoContatoDao = new ComboBoxGenericoDao();
+    private final ComboBoxGenericoDao<Cidade> comboBoxCidadeDao = new ComboBoxGenericoDao();
 
 
     /**
@@ -64,7 +66,8 @@ public class ContatoController implements Initializable, ICadastro {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        cbTipoContato.setItems(dao.comboBox());
+        cbTipoContato.setItems(comboBoxTipoContatoDao.comboBox("TipoContato"));
+        cbCidade.setItems(comboBoxCidadeDao.comboBox("Cidade"));
     }
 
     @FXML
