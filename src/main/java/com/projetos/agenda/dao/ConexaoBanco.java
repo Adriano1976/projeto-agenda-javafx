@@ -16,7 +16,7 @@ public class ConexaoBanco {
         // Objeto que armazena as configurações de conexao.
         Configuration configuracao = new Configuration().configure();
 
-        configuracao.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/agendafx");
+        configuracao.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/agendafx?zeroDateTimeBehavior=convertToNull");
         configuracao.setProperty("hibernate.connection.username", "root");
         configuracao.setProperty("hibernate.connection.password", "251097anl");
         configuracao.setProperty("hibernate.hbm2ddl", "update");

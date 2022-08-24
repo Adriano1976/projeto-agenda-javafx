@@ -53,4 +53,9 @@ public class Cidade implements Serializable {
     public void setCep(Long cep) {
         this.cep = cep;
     }
+
+    @Override
+    public String toString() {
+        return descricao;
+    }
 }

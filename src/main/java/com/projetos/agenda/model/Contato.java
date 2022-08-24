@@ -16,29 +16,35 @@ public class Contato implements Serializable {
     @Column(name = "descricao", length = 100, nullable = false)
     private String descricao;
 
-    @Column(name = "endereco", length = 100, nullable = true)
+    @Column(name = "endereco", length = 100)
     private String endereco;
 
-    @Column(name = "numero_residencia", length = 15, nullable = true)
+    @Column(name = "numero_residencia", length = 15)
     private int numero;
 
     @OneToOne
     private Cidade Cidade;
 
-    @Column(name = "email", length = 50, nullable = true)
+    @Column(name = "email", length = 50, nullable = false)
     private String email;
 
-    @Column(name = "data_nascimento", nullable = true)
+    @Column(name = "data_nascimento")
     private LocalDate nascimento;
 
-    @Column(name = "telefone1", length = 11, nullable = true)
+    @Column(name = "telefone1", length = 11, nullable = false)
     private Long telefone1;
 
-    @Column(name = "telefone2", length = 11, nullable = true)
+    @Column(name = "telefone2", length = 11, nullable = false)
     private Long telefone2;
 
     @OneToOne
     private TipoContato TipoContato;
+
+    @Column(nullable = false)
+    private boolean ativo;
+
+    @Column(length = 1)
+    private String sexo;
 
     public Contato() {
     }
@@ -121,5 +127,26 @@ public class Contato implements Serializable {
 
     public void setTipoContato(TipoContato TipoContato) {
         this.TipoContato = TipoContato;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    @Override
+    public String toString() {
+        return descricao;
     }
 }

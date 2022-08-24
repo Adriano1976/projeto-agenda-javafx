@@ -1,23 +1,28 @@
 package com.projetos.agenda.controller;
 
 import com.projetos.agenda.dao.ComboBoxGenericoDao;
+import com.projetos.agenda.dao.CrudGenericoDao;
 import com.projetos.agenda.model.Cidade;
+import com.projetos.agenda.model.Contato;
 import com.projetos.agenda.model.TipoContato;
+import com.projetos.agenda.util.Alerta;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
+import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ContatoController implements Initializable, ICadastro {
     @FXML
-    public HBox lbTitulo;
+    public Label lbTitulo;
     @FXML
     public TextField tfId;
     @FXML
@@ -29,9 +34,9 @@ public class ContatoController implements Initializable, ICadastro {
     @FXML
     public TextField tfPesquisa;
     @FXML
-    public TableView tableView;
+    public TableView<Contato> tableView;
     @FXML
-    public TextField tfNome;
+    public TextField tfDescricao;
     @FXML
     public TextField tfEndereco;
     @FXML
@@ -47,12 +52,27 @@ public class ContatoController implements Initializable, ICadastro {
     @FXML
     public TextField tfTelefone2;
     @FXML
-    public TextField tfNascimento;
-    @FXML
     public ComboBox<TipoContato> cbTipoContato;
+    @FXML
+    public CheckBox ckAtivo;
+    @FXML
+    public TextField tfEmail;
+    @FXML
+    public RadioButton rbFeminino;
+    @FXML
+    public ToggleGroup sexo;
+    @FXML
+    public RadioButton rbMasculino;
+    @FXML
+    public DatePicker dpNascimento;
 
-    private final ComboBoxGenericoDao<TipoContato> comboBoxTipoContatoDao = new ComboBoxGenericoDao();
-    private final ComboBoxGenericoDao<Cidade> comboBoxCidadeDao = new ComboBoxGenericoDao();
+    private final ComboBoxGenericoDao<TipoContato> comboBoxTipoContatoDao = new ComboBoxGenericoDao<>();
+    private final ComboBoxGenericoDao<Cidade> comboBoxCidadeDao = new ComboBoxGenericoDao<>();
+    private final CrudGenericoDao<Contato> dao = new CrudGenericoDao<>();
+    private List<Contato> lista;
+    private final ObservableList<Contato> observableList = FXCollections.observableArrayList();
+    private final Contato objetoSelecionado = new Contato();
+
 
 
     /**
@@ -68,6 +88,11 @@ public class ContatoController implements Initializable, ICadastro {
     public void initialize(URL location, ResourceBundle resources) {
         cbTipoContato.setItems(comboBoxTipoContatoDao.comboBox("TipoContato"));
         cbCidade.setItems(comboBoxCidadeDao.comboBox("Cidade"));
+
+        cbCidade.setOnAction(actionEvent -> {
+            tfUf.setText(cbCidade.getSelectionModel().getSelectedItem().getUf());
+            tfCep.setText(String.valueOf(cbCidade.getSelectionModel().getSelectedItem().getCep()));
+        });
     }
 
     @FXML
@@ -76,6 +101,28 @@ public class ContatoController implements Initializable, ICadastro {
 
     @FXML
     public void salvarResgistro(ActionEvent actionEvent) {
+        Contato contato = new Contato();
+
+        contato.setDescricao(tfDescricao.getText());
+        contato.setEndereco(tfEndereco.getText());
+        contato.setNumero(Integer.parseInt(tfNumero.getText()));
+        contato.setCidade(cbCidade.getSelectionModel().getSelectedItem());
+        contato.setTipoContato(cbTipoContato.getSelectionModel().getSelectedItem());
+        contato.setEmail(tfEmail.getText());
+        contato.setTelefone1(Long.parseLong(tfTelefone1.getText()));
+        contato.setTelefone2(Long.parseLong(tfTelefone2.getText()));
+        LocalDate dataNascimento = dpNascimento.getValue();
+        contato.setNascimento(dataNascimento);
+
+        contato.setAtivo(ckAtivo.isSelected());
+
+        contato.setSexo(rbMasculino.isSelected() ? "M" : "F");
+
+        if (dao.salvar(contato)) {
+            Alerta.msgInformacao("Registro gravado com sucesso!");
+        } else {
+            Alerta.msgInformacao("Ocorreu um erro ao tentar gravar o registro!");
+        }
     }
 
     @FXML
@@ -83,7 +130,15 @@ public class ContatoController implements Initializable, ICadastro {
     }
 
     @FXML
-    public void pesquisar(ActionEvent actionEvent) {
+    public void filtrarRegistro(KeyEvent keyEvent) {
+    }
+
+    @FXML
+    public void moverTabela(KeyEvent keyEvent) {
+    }
+
+    @FXML
+    public void clicarTabela(MouseEvent mouseEvent) {
     }
 
     @Override

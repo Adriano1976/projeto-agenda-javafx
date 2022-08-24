@@ -2,16 +2,15 @@ package com.projetos.agenda.dao;
 
 import org.hibernate.Session;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CrudGenericoDao<T> {
 
-    public boolean salvar(T tipoContato) {
+    public boolean salvar(T objeto) {
         try {
             Session session = ConexaoBanco.getSessionFactory().openSession();
             session.beginTransaction();
-            session.merge(tipoContato);
+            session.merge(objeto);
             session.getTransaction().commit();
             session.close();
             return true;
@@ -22,11 +21,11 @@ public class CrudGenericoDao<T> {
         }
     }
 
-    public void excluir(T tipoContato) {
+    public void excluir(T objeto) {
         try {
             Session session = ConexaoBanco.getSessionFactory().openSession();
             session.beginTransaction();
-            session.remove(tipoContato);
+            session.remove(objeto);
             session.getTransaction().commit();
             session.clear();
             System.out.println("Registro excluido com sucesso!");
@@ -37,7 +36,7 @@ public class CrudGenericoDao<T> {
     }
 
     public List<T> consultar(String descricao, String nomeClasse) {
-        List lista = new ArrayList<>();
+        List lista;
         Session session = ConexaoBanco.getSessionFactory().openSession();
         session.beginTransaction();
         if (descricao.length() == 0) {
