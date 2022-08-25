@@ -116,6 +116,7 @@ public class CidadeController implements Initializable, ICadastro {
 
     @Override
     public void criarColunasTabela() {
+        // Colunas que aparecerão na tabela.
         TableColumn<Cidade, Long> columaId = new TableColumn<>("ID");
         columaId.setMinWidth(40);
         columaId.setMaxWidth(40);
@@ -125,9 +126,13 @@ public class CidadeController implements Initializable, ICadastro {
         columaId.setMaxWidth(40);
         TableColumn<Cidade, String> colunaCep = new TableColumn<>("CEP");
 
+        // Redimensionamento as colunas automaticamente.
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        // Adicionando as colunas e seus títulos na tabela
         tableView.getColumns().addAll(columaId, colunaDescricao, colunaUf, colunaCep);
 
+        // Relacionar cada coluna a seu atributo no Model.
         columaId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colunaDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
         colunaUf.setCellValueFactory(new PropertyValueFactory<>("uf"));
