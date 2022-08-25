@@ -1,5 +1,6 @@
 package com.projetos.agenda.controller;
 
+import com.projetos.agenda.dao.CidadeDao;
 import com.projetos.agenda.dao.CrudGenericoDao;
 import com.projetos.agenda.model.Cidade;
 import com.projetos.agenda.util.Alerta;
@@ -91,11 +92,16 @@ public class CidadeController implements Initializable, ICadastro {
 
     @FXML
     public void excluirResgistro(ActionEvent actionEvent) {
-        if (Alerta.msgConfirmaExclusao(tfDescricao.getText())) {
-            dao.excluir(objetoSelecionado);
-            limparCamposFormulario();
-            atualizarTabela();
-            Alerta.msgInformacao("Registro excluido com sucesso!");
+        if (CidadeDao.liberaExclusao(objetoSelecionado.getId())) {
+
+            if (Alerta.msgConfirmaExclusao(tfDescricao.getText())) {
+                dao.excluir(objetoSelecionado);
+                limparCamposFormulario();
+                atualizarTabela();
+                Alerta.msgInformacao("Registro excluido com sucesso!");
+            }
+        } else {
+            Alerta.msgInformacao("Exclusão não permitido. \nCidade utilizada no cadastro de Contato!");
         }
     }
 

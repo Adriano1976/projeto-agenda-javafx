@@ -1,6 +1,7 @@
 package com.projetos.agenda.controller;
 
 import com.projetos.agenda.dao.CrudGenericoDao;
+import com.projetos.agenda.dao.TipoContatoDao;
 import com.projetos.agenda.model.TipoContato;
 import com.projetos.agenda.util.Alerta;
 import javafx.collections.FXCollections;
@@ -81,11 +82,16 @@ public class TipoContatoController implements Initializable, ICadastro {
 
     @FXML
     public void excluirResgistro(ActionEvent actionEvent) {
-        if (Alerta.msgConfirmaExclusao(tfDescricao.getText())) {
-            dao.excluir(objetoSelecionado);
-            limparCamposFormulario();
-            atualizarTabela();
-            Alerta.msgInformacao("Registro excluido com sucesso!");
+        if (TipoContatoDao.liberaExclusao(objetoSelecionado.getId())) {
+
+            if (Alerta.msgConfirmaExclusao(tfDescricao.getText())) {
+                dao.excluir(objetoSelecionado);
+                limparCamposFormulario();
+                atualizarTabela();
+                Alerta.msgInformacao("Registro excluido com sucesso!");
+            }
+        } else {
+            Alerta.msgInformacao("Exclusão não permitido. \nTipo de Contato utilizada no cadastro de Contato!");
         }
     }
 
