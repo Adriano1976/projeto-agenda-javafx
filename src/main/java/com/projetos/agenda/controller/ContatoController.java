@@ -137,6 +137,13 @@ public class ContatoController implements Initializable, ICadastro {
 
     @FXML
     public void excluirResgistro(ActionEvent actionEvent) {
+        if (Alerta.msgConfirmaExclusao(tfDescricao.getText())) {
+            dao.excluir(objetoSelecionado);
+            limparCamposFormulario();
+            atualizarTabela();
+            Alerta.msgInformacao("Registro foi excluido com sucesso!");
+
+        }
     }
 
     @FXML
