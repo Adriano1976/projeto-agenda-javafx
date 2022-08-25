@@ -23,4 +23,6 @@ module com.projetos.agenda {
     exports com.projetos.agenda;
     exports com.projetos.agenda.controller;
     exports com.projetos.agenda.model;
+    exports com.projetos.agenda.dao;
+    exports com.projetos.agenda.util;
 }
