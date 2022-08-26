@@ -2,15 +2,22 @@ package com.projetos.agenda.dao;
 
 import org.hibernate.Session;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CrudGenericoDao<T> {
 
-    public boolean salvar(T objeto) {
+    private final Class<T> classeNome;
+
+    public CrudGenericoDao(Class<T> classeNome) {
+        this.classeNome = classeNome;
+    }
+
+    public boolean salvar(T nomeClasse) {
         try {
             Session session = ConexaoBanco.getSessionFactory().openSession();
             session.beginTransaction();
-            session.merge(objeto);
+            session.merge(nomeClasse);
             session.getTransaction().commit();
             session.close();
             return true;
@@ -21,11 +28,11 @@ public class CrudGenericoDao<T> {
         }
     }
 
-    public void excluir(T objeto) {
+    public void excluir(T nomeClasse) {
         try {
             Session session = ConexaoBanco.getSessionFactory().openSession();
             session.beginTransaction();
-            session.remove(objeto);
+            session.remove(nomeClasse);
             session.getTransaction().commit();
             session.clear();
             System.out.println("Registro excluido com sucesso!");
@@ -35,15 +42,17 @@ public class CrudGenericoDao<T> {
         }
     }
 
-    public List<T> consultar(String descricao, String nomeClasse) {
-        List lista;
+    public List<T> consultar(String descricao) {
+        List<T> lista = new ArrayList<>();
         Session session = ConexaoBanco.getSessionFactory().openSession();
         session.beginTransaction();
+        String query;
         if (descricao.length() == 0) {
-            lista = session.createQuery(" from " + nomeClasse).getResultList();
+            query = "select object from " + classeNome.getName() + " object";
         } else {
-            lista = session.createQuery(" from " + nomeClasse + " m where m.descricao like " + "'" + descricao + "%'").getResultList();
+            query = "select object from " + classeNome.getName() + " where object.descricao like " + "'" + descricao + "%'";
         }
+        lista = session.createQuery(query, classeNome).getResultList();
         session.getTransaction().commit();
         session.close();
 

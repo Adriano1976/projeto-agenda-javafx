@@ -11,11 +11,11 @@ public class ComboBoxGenericoDao<T> {
 
     private final ObservableList<T> observableList = FXCollections.observableArrayList();
 
-    public ObservableList<T> comboBox(String nomeClasse) {
-        List lista = new ArrayList<>();
+    public ObservableList<T> comboBox(Class<T> nomeClasse) {
+        List<T> lista = new ArrayList<>();
         Session session = ConexaoBanco.getSessionFactory().openSession();
         session.beginTransaction();
-        lista = session.createQuery("from " + nomeClasse).getResultList();
+        lista = session.createQuery("select object from " + nomeClasse.getName() + " object", nomeClasse).getResultList();
         session.getTransaction().commit();
         session.close();
 

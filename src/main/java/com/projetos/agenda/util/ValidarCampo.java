@@ -5,6 +5,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,8 @@ public class ValidarCampo {
                 "-fx-font-wight: bold;"
         );
 
-        ValidaExibeToolTip.tempoToolTip(tooltip);
+        tooltip.setShowDelay(Duration.seconds(0));
+//        ValidaExibeToolTip.tempoToolTip(tooltip);
 
         for (Node nodeFor : nodes) {
 

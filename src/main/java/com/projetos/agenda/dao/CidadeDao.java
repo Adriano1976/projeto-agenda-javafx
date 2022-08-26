@@ -12,7 +12,7 @@ public class CidadeDao {
         List<Contato> lista = new ArrayList<>();
         Session session = ConexaoBanco.getSessionFactory().openSession();
         session.beginTransaction();
-        lista = session.createQuery(" from Contato where Cidade = " + id).getResultList();
+        lista = session.createQuery(" from Contato c where c.Cidade = " + id, Contato.class).getResultList();
         session.getTransaction().commit();
         session.close();
 

@@ -37,7 +37,7 @@ public class TipoContatoController implements Initializable, ICadastro {
     @FXML
     public TableView<TipoContato> tableView;
 
-    private final CrudGenericoDao<TipoContato> dao = new CrudGenericoDao<>();
+    private final CrudGenericoDao<TipoContato> dao = new CrudGenericoDao<>(TipoContato.class);
     private TipoContato objetoSelecionado = new TipoContato();
     private final ObservableList<TipoContato> observableList = FXCollections.observableArrayList();
 
@@ -135,7 +135,7 @@ public class TipoContatoController implements Initializable, ICadastro {
     @Override
     public void atualizarTabela() {
         observableList.clear();
-        List<TipoContato> lista = dao.consultar(tfPesquisa.getText(), "TipoContato");
+        List<TipoContato> lista = dao.consultar(tfPesquisa.getText());
         observableList.addAll(lista);
         tableView.getItems().setAll(observableList);
         tableView.getSelectionModel().selectFirst();

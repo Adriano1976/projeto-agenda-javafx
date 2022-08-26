@@ -1,6 +1,7 @@
 package com.projetos.agenda.controller;
 
 import com.projetos.agenda.dao.ComboBoxGenericoDao;
+import com.projetos.agenda.dao.ContatoDao;
 import com.projetos.agenda.dao.CrudGenericoDao;
 import com.projetos.agenda.model.Cidade;
 import com.projetos.agenda.model.Contato;
@@ -73,8 +74,8 @@ public class ContatoController implements Initializable, ICadastro {
 
     private final ComboBoxGenericoDao<TipoContato> comboBoxTipoContatoDao = new ComboBoxGenericoDao<>();
     private final ComboBoxGenericoDao<Cidade> comboBoxCidadeDao = new ComboBoxGenericoDao<>();
-    private final CrudGenericoDao<Contato> dao = new CrudGenericoDao<>();
-    private List<Contato> lista;
+    private final CrudGenericoDao<Contato> dao = new CrudGenericoDao<>(Contato.class);
+    private final ContatoDao contatoDao = new ContatoDao();
     private final ObservableList<Contato> observableList = FXCollections.observableArrayList();
     private Contato objetoSelecionado = new Contato();
 
@@ -92,17 +93,14 @@ public class ContatoController implements Initializable, ICadastro {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         lbTitulo.setText("Cadastro de Contato");
-        cbTipoContato.setItems(comboBoxTipoContatoDao.comboBox("TipoContato"));
-        cbCidade.setItems(comboBoxCidadeDao.comboBox("Cidade"));
-
         criarColunasTabela();
         atualizarTabela();
         setCamposFormulario();
 
-        cbCidade.setOnAction(actionEvent -> {
-            tfUf.setText(cbCidade.getSelectionModel().getSelectedItem().getUf());
-            tfCep.setText(String.valueOf(cbCidade.getSelectionModel().getSelectedItem().getCep()));
-        });
+        cbTipoContato.setItems(comboBoxTipoContatoDao.comboBox(TipoContato.class));
+        cbCidade.setItems(comboBoxCidadeDao.comboBox(Cidade.class));
+
+        cbCidade.setOnAction(this::handle);
         MascaraCampo.mascaraNumero(tfNumero);
     }
 
@@ -136,7 +134,7 @@ public class ContatoController implements Initializable, ICadastro {
             contato.setAtivo(ckAtivo.isSelected());
             contato.setSexo(rbMasculino.isSelected() ? "M" : "F");
 
-            if (dao.salvar(contato)) {
+            if (dao.salvar(contato) && contatoDao.liberarInclusao(contato)) {
                 Alerta.msgInformacao("Registro gravado com sucesso!");
                 atualizarTabela();
             } else {
@@ -220,7 +218,7 @@ public class ContatoController implements Initializable, ICadastro {
     public void atualizarTabela() {
         observableList.clear();
 
-        lista = dao.consultar(tfPesquisa.getText(), "Contato");
+        List<Contato> lista = dao.consultar(tfPesquisa.getText());
         observableList.addAll(lista);
 
         tableView.getItems().setAll(observableList);
@@ -288,5 +286,10 @@ public class ContatoController implements Initializable, ICadastro {
         objetoSelecionado = null;
 
         tfDescricao.requestFocus();
+    }
+
+    private void handle(ActionEvent actionEvent) {
+        tfUf.setText(cbCidade.getSelectionModel().getSelectedItem().getUf());
+        tfCep.setText(String.valueOf(cbCidade.getSelectionModel().getSelectedItem().getCep()));
     }
 }

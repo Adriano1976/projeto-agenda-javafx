@@ -42,7 +42,7 @@ public class CidadeController implements Initializable, ICadastro {
     @FXML
     private TextField tfCep;
 
-    private final CrudGenericoDao<Cidade> dao = new CrudGenericoDao<>();
+    private final CrudGenericoDao<Cidade> dao = new CrudGenericoDao<>(Cidade.class);
     private Cidade objetoSelecionado = new Cidade();
     private final ObservableList<Cidade> observableList = FXCollections.observableArrayList();
 
@@ -153,7 +153,7 @@ public class CidadeController implements Initializable, ICadastro {
     @Override
     public void atualizarTabela() {
         observableList.clear();
-        List<Cidade> lista = dao.consultar(tfPesquisa.getText(), "Cidade");
+        List<Cidade> lista = dao.consultar(tfPesquisa.getText());
         observableList.addAll(lista);
         tableView.getItems().setAll(observableList);
         tableView.getSelectionModel().selectFirst();

@@ -22,6 +22,13 @@ public class Cidade implements Serializable {
     public Cidade() {
     }
 
+    public Cidade(Long id, String descricao, String uf, Long cep) {
+        this.id = id;
+        this.descricao = descricao;
+        this.uf = uf;
+        this.cep = cep;
+    }
+
     public Long getId() {
         return id;
     }

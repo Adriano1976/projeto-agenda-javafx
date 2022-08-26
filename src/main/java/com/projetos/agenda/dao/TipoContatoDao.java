@@ -11,7 +11,7 @@ public class TipoContatoDao {
         List<Contato> lista = new ArrayList<>();
         Session session = ConexaoBanco.getSessionFactory().openSession();
         session.beginTransaction();
-        lista = session.createQuery(" from Contato where TipoContato = " + id).getResultList();
+        lista = session.createQuery(" from Contato where TipoContato = " + id, Contato.class).getResultList();
         session.getTransaction().commit();
         session.close();
 

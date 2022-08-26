@@ -39,7 +39,7 @@ public class ValidaExibeToolTip {
             objTimer.getKeyFrames().clear();
             objTimer.getKeyFrames().add(new KeyFrame(new Duration(0)));
 
-        } catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
