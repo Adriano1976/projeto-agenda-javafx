@@ -29,11 +29,11 @@ public class ValidaExibeToolTip {
     public static void tempoToolTip(Tooltip tooltip) {
         try {
             Field fieldBehavior = tooltip.getClass().getDeclaredField("BEHAVIOR");
-            fieldBehavior.setAccessible(false);
+            fieldBehavior.setAccessible(true);
             Object objBehavior = fieldBehavior.get(tooltip);
 
             Field fieldTimer = objBehavior.getClass().getDeclaredField("activationTimer");
-            fieldTimer.setAccessible(false);
+            fieldTimer.setAccessible(true);
             Timeline objTimer = (Timeline) fieldTimer.get(objBehavior);
 
             objTimer.getKeyFrames().clear();
