@@ -6,6 +6,7 @@ import com.projetos.agenda.model.Cidade;
 import com.projetos.agenda.model.Contato;
 import com.projetos.agenda.model.TipoContato;
 import com.projetos.agenda.util.Alerta;
+import com.projetos.agenda.util.ValidarCampo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -110,28 +111,34 @@ public class ContatoController implements Initializable, ICadastro {
 
     @FXML
     public void salvarResgistro(ActionEvent actionEvent) {
-        Contato contato = new Contato();
 
-        contato.setId(objetoSelecionado.getId());
+        if (ValidarCampo.checarCampoVazio(tfDescricao, tfEndereco, tfNumero, cbCidade,
+                cbTipoContato, tfEmail, tfTelefone1, tfTelefone2, dpNascimento)) {
 
-        contato.setDescricao(tfDescricao.getText());
-        contato.setEndereco(tfEndereco.getText());
-        contato.setNumero(Integer.parseInt(tfNumero.getText()));
-        contato.setCidade(cbCidade.getSelectionModel().getSelectedItem());
-        contato.setTipoContato(cbTipoContato.getSelectionModel().getSelectedItem());
-        contato.setEmail(tfEmail.getText());
-        contato.setTelefone1(Long.parseLong(tfTelefone1.getText()));
-        contato.setTelefone2(Long.parseLong(tfTelefone2.getText()));
-        LocalDate dataNascimento = dpNascimento.getValue();
-        contato.setNascimento(dataNascimento);
-        contato.setAtivo(ckAtivo.isSelected());
-        contato.setSexo(rbMasculino.isSelected() ? "M" : "F");
+            Contato contato = new Contato();
 
-        if (dao.salvar(contato)) {
-            Alerta.msgInformacao("Registro gravado com sucesso!");
-            atualizarTabela();
+            contato.setId(objetoSelecionado.getId());
+            contato.setDescricao(tfDescricao.getText());
+            contato.setEndereco(tfEndereco.getText());
+            contato.setNumero(Integer.parseInt(tfNumero.getText()));
+            contato.setCidade(cbCidade.getSelectionModel().getSelectedItem());
+            contato.setTipoContato(cbTipoContato.getSelectionModel().getSelectedItem());
+            contato.setEmail(tfEmail.getText());
+            contato.setTelefone1(Long.parseLong(tfTelefone1.getText()));
+            contato.setTelefone2(Long.parseLong(tfTelefone2.getText()));
+            LocalDate dataNascimento = dpNascimento.getValue();
+            contato.setNascimento(dataNascimento);
+            contato.setAtivo(ckAtivo.isSelected());
+            contato.setSexo(rbMasculino.isSelected() ? "M" : "F");
+
+            if (dao.salvar(contato)) {
+                Alerta.msgInformacao("Registro gravado com sucesso!");
+                atualizarTabela();
+            } else {
+                Alerta.msgInformacao("Ocorreu um erro ao tentar gravar o registro!");
+            }
         } else {
-            Alerta.msgInformacao("Ocorreu um erro ao tentar gravar o registro!");
+            Alerta.msgInformacao("Favor, preencher o(s) campo(s) obrigatório(s)");
         }
     }
 

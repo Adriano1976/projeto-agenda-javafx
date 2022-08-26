@@ -5,6 +5,7 @@ import com.projetos.agenda.dao.CrudGenericoDao;
 import com.projetos.agenda.model.Cidade;
 import com.projetos.agenda.util.Alerta;
 import com.projetos.agenda.util.Uf;
+import com.projetos.agenda.util.ValidarCampo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -71,23 +72,27 @@ public class CidadeController implements Initializable, ICadastro {
 
     @FXML
     public void salvarResgistro(ActionEvent actionEvent) {
-        Cidade objeto = new Cidade();
+        if (ValidarCampo.checarCampoVazio(tfDescricao, tfCep, cbUf)) {
+            Cidade objeto = new Cidade();
 
-        if (objetoSelecionado != null) {
-            objeto.setId(objetoSelecionado.getId());
-        }
+            if (objetoSelecionado != null) {
+                objeto.setId(objetoSelecionado.getId());
+            }
 
-        objeto.setDescricao(tfDescricao.getText());
-        objeto.setCep(Long.parseLong(tfCep.getText()));
-        objeto.setUf(cbUf.getValue());
+            objeto.setDescricao(tfDescricao.getText());
+            objeto.setCep(Long.parseLong(tfCep.getText()));
+            objeto.setUf(cbUf.getValue());
 
-        if (dao.salvar(objeto)) {
-            Alerta.msgInformacao("Registro gravado com sucesso!");
+            if (dao.salvar(objeto)) {
+                Alerta.msgInformacao("Registro gravado com sucesso!");
+            } else {
+                Alerta.msgInformacao("Ocorreu um erro ao tentar gravar o registro!");
+            }
+            atualizarTabela();
+            limparCamposFormulario();
         } else {
-            Alerta.msgInformacao("Ocorreu um erro ao tentar gravar o registro!");
+            Alerta.msgInformacao("Favor, preencher o(s) campo(s) obrigatório(s)");
         }
-        atualizarTabela();
-        limparCamposFormulario();
     }
 
     @FXML

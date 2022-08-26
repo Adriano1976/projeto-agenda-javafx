@@ -16,6 +16,18 @@ public class TipoContato implements Serializable {
     public TipoContato() {
     }
 
+    public TipoContato(Long id, String descricao) {
+        super();
+        this.id = id;
+        this.descricao = descricao;
+    }
+
+    public TipoContato(TipoContato tipoContato) {
+        super();
+        this.id = tipoContato.getId();
+        this.descricao = tipoContato.getDescricao();
+    }
+
     public Long getId() {
         return id;
     }

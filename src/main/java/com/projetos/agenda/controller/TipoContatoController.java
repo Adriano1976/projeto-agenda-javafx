@@ -4,6 +4,7 @@ import com.projetos.agenda.dao.CrudGenericoDao;
 import com.projetos.agenda.dao.TipoContatoDao;
 import com.projetos.agenda.model.TipoContato;
 import com.projetos.agenda.util.Alerta;
+import com.projetos.agenda.util.ValidarCampo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -55,6 +56,8 @@ public class TipoContatoController implements Initializable, ICadastro {
         criarColunasTabela();
         atualizarTabela();
         setCamposFormulario();
+
+//        ValidarCampo.checarCampoVazio(tfDescricao);
     }
 
     @FXML
@@ -64,20 +67,25 @@ public class TipoContatoController implements Initializable, ICadastro {
 
     @FXML
     public void salvarResgistro(ActionEvent actionEvent) {
-        TipoContato objeto = new TipoContato();
 
-        if (objetoSelecionado != null) {
-            objeto.setId(objetoSelecionado.getId());
-        }
+        if (ValidarCampo.checarCampoVazio(tfDescricao)) {
+            TipoContato objeto = new TipoContato();
 
-        objeto.setDescricao(tfDescricao.getText());
-        if (dao.salvar(objeto)) {
-            Alerta.msgInformacao("Registro gravado com sucesso!");
+            if (objetoSelecionado != null) {
+                objeto.setId(objetoSelecionado.getId());
+            }
+
+            objeto.setDescricao(tfDescricao.getText());
+            if (dao.salvar(objeto)) {
+                Alerta.msgInformacao("Registro gravado com sucesso!");
+            } else {
+                Alerta.msgInformacao("Ocorreu um erro ao tentar gravar o registro!");
+            }
+            atualizarTabela();
+            limparCamposFormulario();
         } else {
-            Alerta.msgInformacao("Ocorreu um erro ao tentar gravar o registro!");
+            Alerta.msgInformacao("Favor, preencher o(s) campo(s) obrigatório(s)");
         }
-        atualizarTabela();
-        limparCamposFormulario();
     }
 
     @FXML
