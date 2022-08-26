@@ -6,6 +6,7 @@ import com.projetos.agenda.model.Cidade;
 import com.projetos.agenda.model.Contato;
 import com.projetos.agenda.model.TipoContato;
 import com.projetos.agenda.util.Alerta;
+import com.projetos.agenda.util.MascaraCampo;
 import com.projetos.agenda.util.ValidarCampo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -102,6 +103,7 @@ public class ContatoController implements Initializable, ICadastro {
             tfUf.setText(cbCidade.getSelectionModel().getSelectedItem().getUf());
             tfCep.setText(String.valueOf(cbCidade.getSelectionModel().getSelectedItem().getCep()));
         });
+        MascaraCampo.mascaraNumero(tfNumero);
     }
 
     @FXML
@@ -112,12 +114,15 @@ public class ContatoController implements Initializable, ICadastro {
     @FXML
     public void salvarResgistro(ActionEvent actionEvent) {
 
-        if (ValidarCampo.checarCampoVazio(tfDescricao, tfEndereco, tfNumero, cbCidade,
-                cbTipoContato, tfEmail, tfTelefone1, tfTelefone2, dpNascimento)) {
+        if (ValidarCampo.checarCampoVazio(tfDescricao, tfEndereco, tfNumero,
+                tfEmail, tfTelefone1, tfTelefone2, dpNascimento)) {
 
             Contato contato = new Contato();
 
-            contato.setId(objetoSelecionado.getId());
+            if (objetoSelecionado != null) {
+                contato.setId(objetoSelecionado.getId());
+            }
+
             contato.setDescricao(tfDescricao.getText());
             contato.setEndereco(tfEndereco.getText());
             contato.setNumero(Integer.parseInt(tfNumero.getText()));
