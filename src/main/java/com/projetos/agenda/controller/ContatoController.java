@@ -79,7 +79,8 @@ public class ContatoController implements Initializable, ICadastro {
     private final ObservableList<Contato> observableList = FXCollections.observableArrayList();
     private Contato objetoSelecionado = new Contato();
 
-
+    public ContatoController() {
+    }
 
     /**
      * Called to initialize a controller after its root element has been
@@ -97,10 +98,25 @@ public class ContatoController implements Initializable, ICadastro {
         atualizarTabela();
         setCamposFormulario();
 
+        var cb = cbCidade.getSelectionModel().getSelectedItem();
+        if (cb != null) {
+            tfUf.setText(cb.getUf());
+            tfCep.setText(String.valueOf(cb.getCep()));
+        }
+
         cbTipoContato.setItems(comboBoxTipoContatoDao.comboBox(TipoContato.class));
         cbCidade.setItems(comboBoxCidadeDao.comboBox(Cidade.class));
 
-        cbCidade.setOnAction(this::handle);
+        cbCidade.setOnAction(actionEvent -> {
+            var c = cbCidade.getSelectionModel().getSelectedItem();
+            if (c != null) {
+                tfUf.setText(c.getUf());
+                tfCep.setText(String.valueOf(c.getCep()));
+            }
+        });
+
+        ckAtivo.setSelected(true);
+
         MascaraCampo.mascaraNumero(tfNumero);
     }
 
@@ -246,6 +262,11 @@ public class ContatoController implements Initializable, ICadastro {
             }
             dpNascimento.setValue(objetoSelecionado.getNascimento());
 
+            cbTipoContato.getSelectionModel().selectFirst();
+            cbTipoContato.setValue(objetoSelecionado.getTipoContato());
+            cbCidade.getSelectionModel().selectFirst();
+            cbCidade.setValue(objetoSelecionado.getCidade());
+
 //            TipoContato tipoContatoSelecionado = new TipoContato();
 //            tipoContatoSelecionado.setId(objetoSelecionado.getTipoContato().getId());
 //            tipoContatoSelecionado.setDescricao(objetoSelecionado.getTipoContato().getDescricao());
@@ -259,11 +280,6 @@ public class ContatoController implements Initializable, ICadastro {
 //            cidadeSelecionada.setCep(objetoSelecionado.getCidade().getCep());
 //            cbCidade.getSelectionModel().selectFirst();
 //            cbCidade.setValue(cidadeSelecionada);
-
-            cbTipoContato.getSelectionModel().selectFirst();
-            cbTipoContato.setValue(objetoSelecionado.getTipoContato());
-            cbCidade.getSelectionModel().selectFirst();
-            cbCidade.setValue(objetoSelecionado.getCidade());
         }
     }
 

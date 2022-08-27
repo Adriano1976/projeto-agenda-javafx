@@ -50,7 +50,7 @@ public class CrudGenericoDao<T> {
         if (descricao.length() == 0) {
             query = "select object from " + classeNome.getName() + " object";
         } else {
-            query = "select object from " + classeNome.getName() + " where object.descricao like " + "'" + descricao + "%'";
+            query = "select object from " + classeNome.getName() + " object" + " where object.descricao like " + "'" + descricao + "%'";
         }
         lista = session.createQuery(query, classeNome).getResultList();
         session.getTransaction().commit();
