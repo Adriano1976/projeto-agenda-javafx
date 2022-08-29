@@ -56,8 +56,6 @@ public class TipoContatoController implements Initializable, ICadastro {
         criarColunasTabela();
         atualizarTabela();
         setCamposFormulario();
-
-//        ValidarCampo.checarCampoVazio(tfDescricao);
     }
 
     @FXML

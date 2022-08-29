@@ -1,6 +1,7 @@
 package com.projetos.agenda.model;
 
 import jakarta.persistence.*;
+
 import java.io.Serializable;
 
 @Entity
@@ -18,7 +19,17 @@ public class Usuario implements Serializable {
     @Column(name = "senha", length = 8, nullable = false)
     private String senha;
 
+    @Column(name = "senha1", length = 8, nullable = false)
+    private String senha1;
+
     public Usuario() {
+    }
+
+    public Usuario(Long id, String descricao, String senha, String senha1) {
+        this.id = id;
+        this.descricao = descricao;
+        this.senha = senha;
+        this.senha1 = senha1;
     }
 
     public Long getId() {
@@ -38,10 +49,36 @@ public class Usuario implements Serializable {
     }
 
     public String getSenha() {
-        return senha;
+        return senha.replace(senha, "********");
     }
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getSenha1() {
+        return senha1;
+    }
+
+    public void setSenha1(String senha1) {
+        this.senha1 = senha1;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Usuario usuario)) return false;
+
+        if (getId() != null ? !getId().equals(usuario.getId()) : usuario.getId() != null) return false;
+        if (getDescricao() != null ? !getDescricao().equals(usuario.getDescricao()) : usuario.getDescricao() != null)
+            return false;
+        if (getSenha() != null ? !getSenha().equals(usuario.getSenha()) : usuario.getSenha() != null) return false;
+        return getSenha1() != null ? getSenha1().equals(usuario.getSenha1()) : usuario.getSenha1() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return getDescricao().hashCode();
     }
 }
