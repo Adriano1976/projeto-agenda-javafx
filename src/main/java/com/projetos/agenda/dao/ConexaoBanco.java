@@ -3,7 +3,6 @@ package com.projetos.agenda.dao;
 import com.projetos.agenda.model.Cidade;
 import com.projetos.agenda.model.Contato;
 import com.projetos.agenda.model.TipoContato;
-import com.projetos.agenda.model.Usuario;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -24,7 +23,6 @@ public class ConexaoBanco {
 
         // Indicando o mapeamento das classes.
         configuracao.addPackage("com.projetos.agenda.model").addAnnotatedClass(TipoContato.class);
-        configuracao.addPackage("com.projetos.agenda.model").addAnnotatedClass(Usuario.class);
         configuracao.addPackage("com.projetos.agenda.model").addAnnotatedClass(Cidade.class);
         configuracao.addPackage("com.projetos.agenda.model").addAnnotatedClass(Contato.class);
 

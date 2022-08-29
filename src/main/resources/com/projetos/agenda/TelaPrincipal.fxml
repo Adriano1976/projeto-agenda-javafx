@@ -30,10 +30,6 @@
                <accelerator>
                   <KeyCodeCombination alt="UP" code="D" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                </accelerator></MenuItem>
-                <MenuItem fx:id="menuItemUsuario" mnemonicParsing="false" onAction="#acessarUsuario" text="Usuário">
-               <accelerator>
-                  <KeyCodeCombination alt="UP" code="U" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-               </accelerator></MenuItem>
                 <MenuItem fx:id="menuItemSair" mnemonicParsing="false" onAction="#acessarSair" text="Sair">
                <accelerator>
                   <KeyCodeCombination alt="UP" code="R" control="DOWN" meta="UP" shift="UP" shortcut="UP" />

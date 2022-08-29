@@ -64,7 +64,6 @@ public class TelaPrincipalController implements Initializable {
         Image menuItemContatoIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("icons/iconeMenuContato.png")));
         Image menuItemTipoContatoIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("icons/iconeMenuContatoTipo.png")));
         Image menuItemCidadeIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("icons/iconeMenuCidade.png")));
-        Image menuItemUsuarioIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("icons/iconeMenuUsuario.png")));
         Image menuItemSairIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("icons/iconeMenuSair.png")));
         Image menuItemRelatorioIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("icons/iconeMenuRelatorio.png")));
         Image menuItemSobreSistemaIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("icons/iconeMenuSobre.png")));
@@ -72,7 +71,6 @@ public class TelaPrincipalController implements Initializable {
         menuItemContato.setGraphic(new ImageView(menuItemContatoIcon));
         menuItemTipoContato.setGraphic(new ImageView(menuItemTipoContatoIcon));
         menuItemCidade.setGraphic(new ImageView(menuItemCidadeIcon));
-        menuItemUsuario.setGraphic(new ImageView(menuItemUsuarioIcon));
         menuItemSair.setGraphic(new ImageView(menuItemSairIcon));
 
         menuItemRelatorioContatoGeral.setGraphic(new ImageView(menuItemRelatorioIcon));
@@ -100,12 +98,8 @@ public class TelaPrincipalController implements Initializable {
     }
 
     @FXML
-    public void acessarUsuario(ActionEvent actionEvent) {
-        abrirFormulario("usuario_view");
-    }
-
-    @FXML
     public void acessarSair(ActionEvent actionEvent) {
+        System.exit(0);
     }
 
     @FXML
