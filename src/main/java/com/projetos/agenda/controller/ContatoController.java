@@ -6,9 +6,7 @@ import com.projetos.agenda.dao.CrudGenericoDao;
 import com.projetos.agenda.model.Cidade;
 import com.projetos.agenda.model.Contato;
 import com.projetos.agenda.model.TipoContato;
-import com.projetos.agenda.util.Alerta;
-import com.projetos.agenda.util.MascaraCampo;
-import com.projetos.agenda.util.ValidarCampo;
+import com.projetos.agenda.util.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -80,6 +78,7 @@ public class ContatoController implements Initializable, ICadastro {
     private final ComboBoxGenericoDao<Cidade> comboBoxCidadeDao = new ComboBoxGenericoDao<>();
     private final CrudGenericoDao<Contato> dao = new CrudGenericoDao<>(Contato.class);
     private final ContatoDao contatoDao = new ContatoDao();
+    protected final RelatorioContato relatorioContato = new RelatorioContato();
     private final ObservableList<Contato> observableList = FXCollections.observableArrayList();
 
     private Contato objetoSelecionado = new Contato();
@@ -159,6 +158,24 @@ public class ContatoController implements Initializable, ICadastro {
             contato.setNascimento(dataNascimento);
             contato.setAtivo(ckAtivo.isSelected());
             contato.setSexo(rbMasculino.isSelected() ? "M" : "F");
+
+            String[] lines = new String[]{
+                    String.valueOf(contato.getId()),
+                    String.valueOf(contato.getDescricao()),
+                    String.valueOf(contato.getSobrenome()),
+                    String.valueOf(contato.getEndereco()),
+                    String.valueOf(contato.getBairro()),
+                    String.valueOf(contato.getNumero()),
+                    String.valueOf(contato.getCidade()),
+                    String.valueOf(contato.getTipoContato()),
+                    String.valueOf(contato.getEmail()),
+                    String.valueOf(contato.getTelefone1()),
+                    String.valueOf(contato.getTelefone2()),
+                    String.valueOf(contato.getNascimento()),
+                    String.valueOf(contato.getSexo()),
+            };
+
+            relatorioContato.salvarContato(lines);
 
             if (dao.salvar(contato) && contatoDao.liberarInclusao(contato)) {
                 Alerta.msgInformacao("Registro gravado com sucesso!");

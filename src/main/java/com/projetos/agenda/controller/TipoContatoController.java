@@ -4,6 +4,7 @@ import com.projetos.agenda.dao.CrudGenericoDao;
 import com.projetos.agenda.dao.TipoContatoDao;
 import com.projetos.agenda.model.TipoContato;
 import com.projetos.agenda.util.Alerta;
+import com.projetos.agenda.util.RelatorioTipoContato;
 import com.projetos.agenda.util.ValidarCampo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -39,6 +40,8 @@ public class TipoContatoController implements Initializable, ICadastro {
 
     private final CrudGenericoDao<TipoContato> dao = new CrudGenericoDao<>(TipoContato.class);
     private TipoContato objetoSelecionado = new TipoContato();
+
+    protected final RelatorioTipoContato relatorio = new RelatorioTipoContato();
     private final ObservableList<TipoContato> observableList = FXCollections.observableArrayList();
 
     /**
@@ -72,8 +75,14 @@ public class TipoContatoController implements Initializable, ICadastro {
             if (objetoSelecionado != null) {
                 objeto.setId(objetoSelecionado.getId());
             }
-
             objeto.setDescricao(tfDescricao.getText());
+
+            String[] lines = new String[]{
+                    String.valueOf(objeto.getDescricao())
+            };
+
+            relatorio.salvarTipoContato(lines);
+
             if (dao.salvar(objeto)) {
                 Alerta.msgInformacao("Registro gravado com sucesso!");
             } else {

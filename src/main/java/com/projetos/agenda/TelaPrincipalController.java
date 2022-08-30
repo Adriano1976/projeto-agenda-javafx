@@ -1,5 +1,7 @@
 package com.projetos.agenda;
 
+import com.projetos.agenda.util.RelatorioContato;
+import com.projetos.agenda.util.RelatorioTipoContato;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,8 +34,6 @@ public class TelaPrincipalController implements Initializable {
     @FXML
     public MenuItem menuItemCidade;
     @FXML
-    public MenuItem menuItemUsuario;
-    @FXML
     public MenuItem menuItemSair;
     @FXML
     public Menu menuRelatorio;
@@ -49,6 +49,9 @@ public class TelaPrincipalController implements Initializable {
     public Menu menuSobre;
     @FXML
     public MenuItem menuItemSobreSistema;
+
+    protected final RelatorioTipoContato relatorioTipoContato = new RelatorioTipoContato();
+    protected final RelatorioContato relatorioContato = new RelatorioContato();
 
     /**
      * Called to initialize a controller after its root element has been
@@ -104,18 +107,22 @@ public class TelaPrincipalController implements Initializable {
 
     @FXML
     public void acessarRelatorioContatoGeral(ActionEvent actionEvent) {
+        relatorioContato.gerarRelatorioContato();
     }
 
     @FXML
     public void acessarRelatorioContatoEndereco(ActionEvent actionEvent) {
+        relatorioContato.gerarRelatorioContato();
     }
 
     @FXML
     public void acessarRelatorioContatoTelefone(ActionEvent actionEvent) {
+        relatorioContato.gerarRelatorioContato();
     }
 
     @FXML
     public void acessarRelatorioContatoTipo(ActionEvent actionEvent) {
+        relatorioTipoContato.gerarRelatorioTipoContato();
     }
 
     @FXML

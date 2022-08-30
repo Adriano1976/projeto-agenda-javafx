@@ -170,6 +170,19 @@ public class Contato implements Serializable {
 
     @Override
     public String toString() {
-        return descricao;
+        return "Contato: " + id +
+                ", Nome: " + descricao +
+                ", Sobrenome: " + sobrenome +
+                ", Endereço: " + endereco +
+                ", Bairro: " + bairro +
+                ", Número: " + numero +
+                ", Cidade: " + Cidade +
+                ", Email: " + email +
+                ", Data de Nascimento: " + nascimento +
+                ", Telefone 1: " + telefone1 +
+                ", Telefone 2: " + telefone2 +
+                ", Tipo de Contato: " + TipoContato +
+                ", Status: " + ativo +
+                ", Sexo: " + sexo;
     }
 }
