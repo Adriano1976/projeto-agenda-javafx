@@ -44,7 +44,11 @@ public class ContatoController implements Initializable, ICadastro {
     @FXML
     public TextField tfDescricao;
     @FXML
+    public TextField tfSobrenome;
+    @FXML
     public TextField tfEndereco;
+    @FXML
+    public TextField tfBairro;
     @FXML
     public TextField tfNumero;
     @FXML
@@ -77,6 +81,7 @@ public class ContatoController implements Initializable, ICadastro {
     private final CrudGenericoDao<Contato> dao = new CrudGenericoDao<>(Contato.class);
     private final ContatoDao contatoDao = new ContatoDao();
     private final ObservableList<Contato> observableList = FXCollections.observableArrayList();
+
     private Contato objetoSelecionado = new Contato();
 
     public ContatoController() {
@@ -118,18 +123,21 @@ public class ContatoController implements Initializable, ICadastro {
         ckAtivo.setSelected(true);
 
         MascaraCampo.mascaraNumero(tfNumero);
+        MascaraCampo.mascaraTelefone(tfTelefone1);
     }
 
     @FXML
     public void incluirResgistro(ActionEvent actionEvent) {
         limparCamposFormulario();
+        tfUf.clear();
+        tfCep.clear();
     }
 
     @FXML
     public void salvarResgistro(ActionEvent actionEvent) {
 
-        if (ValidarCampo.checarCampoVazio(tfDescricao, tfEndereco, tfNumero,
-                tfEmail, tfTelefone1, tfTelefone2, dpNascimento)) {
+        if (ValidarCampo.checarCampoVazio(tfDescricao, tfSobrenome, tfEndereco, tfBairro,
+                tfNumero, tfEmail, tfTelefone1, tfTelefone2, dpNascimento)) {
 
             Contato contato = new Contato();
 
@@ -138,7 +146,9 @@ public class ContatoController implements Initializable, ICadastro {
             }
 
             contato.setDescricao(tfDescricao.getText());
+            contato.setSobrenome(tfSobrenome.getText());
             contato.setEndereco(tfEndereco.getText());
+            contato.setBairro(tfBairro.getText());
             contato.setNumero(Integer.parseInt(tfNumero.getText()));
             contato.setCidade(cbCidade.getSelectionModel().getSelectedItem());
             contato.setTipoContato(cbTipoContato.getSelectionModel().getSelectedItem());
@@ -156,6 +166,9 @@ public class ContatoController implements Initializable, ICadastro {
             } else {
                 Alerta.msgInformacao("Ocorreu um erro ao tentar gravar o registro!");
             }
+            atualizarTabela();
+            limparCamposFormulario();
+
         } else {
             Alerta.msgInformacao("Favor, preencher o(s) campo(s) obrigatório(s)");
         }
@@ -248,7 +261,9 @@ public class ContatoController implements Initializable, ICadastro {
 
             tfId.setText(String.valueOf(objetoSelecionado.getId()));
             tfDescricao.setText(objetoSelecionado.getDescricao());
+            tfSobrenome.setText(objetoSelecionado.getSobrenome());
             tfEndereco.setText(objetoSelecionado.getEndereco());
+            tfBairro.setText(objetoSelecionado.getBairro());
             tfNumero.setText(String.valueOf(objetoSelecionado.getNumero()));
             tfTelefone1.setText(String.valueOf(objetoSelecionado.getTelefone1()));
             tfTelefone2.setText(String.valueOf(objetoSelecionado.getTelefone2()));
@@ -266,31 +281,23 @@ public class ContatoController implements Initializable, ICadastro {
             cbTipoContato.setValue(objetoSelecionado.getTipoContato());
             cbCidade.getSelectionModel().selectFirst();
             cbCidade.setValue(objetoSelecionado.getCidade());
-
-//            TipoContato tipoContatoSelecionado = new TipoContato();
-//            tipoContatoSelecionado.setId(objetoSelecionado.getTipoContato().getId());
-//            tipoContatoSelecionado.setDescricao(objetoSelecionado.getTipoContato().getDescricao());
-//            cbTipoContato.getSelectionModel().selectFirst();
-//            cbTipoContato.setValue(tipoContatoSelecionado);
-//
-//            Cidade cidadeSelecionada = new Cidade();
-//            cidadeSelecionada.setId(objetoSelecionado.getCidade().getId());
-//            cidadeSelecionada.setDescricao(objetoSelecionado.getCidade().getDescricao());
-//            cidadeSelecionada.setUf(objetoSelecionado.getCidade().getUf());
-//            cidadeSelecionada.setCep(objetoSelecionado.getCidade().getCep());
-//            cbCidade.getSelectionModel().selectFirst();
-//            cbCidade.setValue(cidadeSelecionada);
+            tfUf.setText(cbCidade.getSelectionModel().getSelectedItem().getUf());
+            tfCep.setText(String.valueOf(cbCidade.getSelectionModel().getSelectedItem().getCep()));
         }
     }
 
     @Override
     public void limparCamposFormulario() {
         tfDescricao.clear();
+        tfSobrenome.clear();
         tfEndereco.clear();
+        tfBairro.clear();
         tfNumero.clear();
         tfTelefone1.clear();
         tfTelefone2.clear();
         tfEmail.clear();
+        tfCep.clear();
+        tfUf.clear();
 
         rbMasculino.setSelected(true);
         ckAtivo.setSelected(true);
@@ -302,10 +309,5 @@ public class ContatoController implements Initializable, ICadastro {
         objetoSelecionado = null;
 
         tfDescricao.requestFocus();
-    }
-
-    private void handle(ActionEvent actionEvent) {
-        tfUf.setText(cbCidade.getSelectionModel().getSelectedItem().getUf());
-        tfCep.setText(String.valueOf(cbCidade.getSelectionModel().getSelectedItem().getCep()));
     }
 }

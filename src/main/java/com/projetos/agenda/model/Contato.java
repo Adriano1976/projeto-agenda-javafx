@@ -1,6 +1,7 @@
 package com.projetos.agenda.model;
 
 import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -16,8 +17,14 @@ public class Contato implements Serializable {
     @Column(name = "descricao", length = 100, nullable = false)
     private String descricao;
 
+    @Column(name = "sobrenome", length = 100, nullable = false)
+    private String sobrenome;
+
     @Column(name = "endereco", length = 100)
     private String endereco;
+
+    @Column(name = "bairro", length = 100)
+    private String bairro;
 
     @Column(name = "numero_residencia", length = 15)
     private int numero;
@@ -65,12 +72,28 @@ public class Contato implements Serializable {
         this.descricao = descricao;
     }
 
+    public String getSobrenome() {
+        return sobrenome;
+    }
+
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
+    }
+
     public String getEndereco() {
         return endereco;
     }
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
     }
 
     public int getNumero() {

@@ -13,6 +13,7 @@ module com.projetos.agenda {
     requires hibernate.java8;
     requires java.naming;
     requires java.sql;
+    requires java.desktop;
 
     opens com.projetos.agenda to javafx.graphics ,javafx.fxml, javafx.base;
     opens com.projetos.agenda.icons to javafx.fxml;
