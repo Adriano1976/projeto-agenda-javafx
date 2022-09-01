@@ -1,46 +1,38 @@
 package com.projetos.agenda.util;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.scene.Node;
 import javafx.scene.control.Tooltip;
-import javafx.util.Duration;
 
-import java.lang.reflect.Field;
-
+/**
+ * Classe responsável por controlar e emitir uma mensagem de validação nos
+ * campos dos formulários SE algum campo firar em branco.
+ *
+ * @author Adriano Santos
+ */
 public class ValidaExibeToolTip {
 
-    // Adicionar e remover os estilos da borda.
+    /**
+     * Método responsável em adicionar uma cor na borda dos campos usando
+     * os métodos {@link Node} e {@link Tooltip}.
+     *
+     * @param node    Recebe as característcas da cor da borda do campo.
+     * @param tooltip Devolve uma borda com a cor configurada ao campo.
+     */
     public static void adicionarCorBordaTootlTip(Node node, Tooltip tooltip) {
         Tooltip.install(node, tooltip);
         node.setStyle("-fx-border-color: #00CED1;");
     }
 
+    /**
+     * Método responsável em remover a cor na borda dos campos usando
+     * os métodos {@link Node} e {@link Tooltip}.
+     *
+     * @param node    Recebe as característcas da cor da borda do campo, sendo nesse caso recebe o valor "null".
+     * @param tooltip Devolve um status sem a cor configurada ao campo.
+     */
+
     public static void removerCorBordaTootlTip(Node node, Tooltip tooltip) {
         Tooltip.uninstall(node, tooltip);
         node.setStyle(null);
-    }
-
-    public static void mensagem(Node node, Tooltip tooltip) {
-        Tooltip.install(node, tooltip);
-    }
-
-    // Exibição do TooltTip (Duração e comportamento)
-    public static void tempoToolTip(Tooltip tooltip) {
-        try {
-            Field fieldBehavior = tooltip.getClass().getDeclaredField("BEHAVIOR");
-            fieldBehavior.setAccessible(true);
-            Object objBehavior = fieldBehavior.get(tooltip);
-
-            Field fieldTimer = objBehavior.getClass().getDeclaredField("activationTimer");
-            fieldTimer.setAccessible(true);
-            Timeline objTimer = (Timeline) fieldTimer.get(objBehavior);
-
-            objTimer.getKeyFrames().clear();
-            objTimer.getKeyFrames().add(new KeyFrame(new Duration(0)));
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }

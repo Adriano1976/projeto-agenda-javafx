@@ -5,6 +5,14 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+/**
+ * <p>Classe principal responsável pelos atributos, métodos construtores e métodos de acesso.
+ * Ela também serve como modelo para o mapeamento da classe <code>Contato</code> pelo
+ * Hibernade na implementação e manutenção da tabela Contato.</p>
+ *
+ * @author Adriano Santos
+ **/
+
 @Entity
 @Table(name = "contato")
 public class Contato implements Serializable {
@@ -53,6 +61,9 @@ public class Contato implements Serializable {
     @Column(length = 1)
     private String sexo;
 
+    /**
+     * <h3>Método Construtor básico</h3>
+     */
     public Contato() {
     }
 
@@ -168,6 +179,11 @@ public class Contato implements Serializable {
         this.sexo = sexo;
     }
 
+    /**
+     * <p>Método responsável em informar os objetos na classe Contato.</p>
+     *
+     * @return Retorna todos os dados de contato do tipo <code>String</code> ao ser chamado.
+     */
     @Override
     public String toString() {
         return "Contato: " + id +

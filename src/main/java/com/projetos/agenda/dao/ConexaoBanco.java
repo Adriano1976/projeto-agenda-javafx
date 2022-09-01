@@ -7,10 +7,21 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 
+/**
+ * <p>Classe responsável em fazer a conexão com o banco de dados seguindo as configurações desejadas
+ * e controlar a comunicação entre a base de dados e os pacotes reclacionados a cada classe existente</p>
+ *
+ * @author Adriano Santos
+ */
 public class ConexaoBanco {
     private static SessionFactory conexao = null;
 
-    private static SessionFactory buildSessionFactory() {//
+    /**
+     * Método responsável pelas configurações e pacotes desejados para ocorrer uma conexão esperada.
+     *
+     * @return Retorna o resultado da tentativa de conexão com o banco de dados.
+     */
+    private static SessionFactory buildSessionFactory() {
 
         // Objeto que armazena as configurações de conexao.
         Configuration configuracao = new Configuration().configure();
@@ -31,6 +42,11 @@ public class ConexaoBanco {
         return conexao;
     }
 
+    /**
+     * Método responsável em realizar o texte de validação de conexão.
+     *
+     * @return Retorna o resultado do texte podendo ser {@code true} se houver conexão ou {@code false}.
+     */
     public static SessionFactory getSessionFactory() {
         if (conexao == null) {
             conexao = buildSessionFactory();

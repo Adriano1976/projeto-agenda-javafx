@@ -3,9 +3,19 @@ package com.projetos.agenda.util;
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * Classe responsável em controlar a geração de arquivos no formato csv dos contatos.
+ *
+ * @author Adriano Santos
+ */
 public class RelatorioContato {
-
-    public void salvarContato(String[] lineContato){
+    /**
+     * Método responsável em salvar os dados de contato no formato csv no caminho informado
+     * pela variável <code>pathsalvarContato</code>.
+     *
+     * @param lineContato Responsável em receber os dados de contato e salvar na pasta "temp".
+     */
+    public void salvarContato(String[] lineContato) {
 
         String pathsalvarContato = "C:\\temp\\relatorio\\Contato.csv";
         //criar um Filé para pegar o caminho.
@@ -31,6 +41,12 @@ public class RelatorioContato {
         }
     }
 
+    /**
+     * Método responsável em gerar o relatório de Contato no formato "csv".
+     * Ele está dividido em 2 etapas:
+     * — Ler os dados do arquivo já salvo no variável <code>pathGerar</code> usando o método <code>BufferedReader</code>.
+     * — Escrever os dados num novo arquivo usando o método <code>BufferedWriter</code>.
+     */
     public void gerarRelatorioContato() {
 
         String pathGerar = "C:\\temp\\relatorio - Contato.csv";
@@ -38,7 +54,7 @@ public class RelatorioContato {
         try (BufferedReader bufferedReaderContato = new BufferedReader(new FileReader(pathGerar))) {
 
             // faz o for e escreve tudo no arquivo da String pathNewFile
-            ArrayList<String> lines = new ArrayList<>(); // Read all the lines and save it on an Array
+            ArrayList<String> lines = new ArrayList<>();
             String line = bufferedReaderContato.readLine();
             while (line != null) {
                 lines.add(line);

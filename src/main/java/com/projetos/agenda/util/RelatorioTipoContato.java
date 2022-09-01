@@ -3,9 +3,21 @@ package com.projetos.agenda.util;
 import java.io.*;
 import java.util.ArrayList;
 
-public class RelatorioTipoContato {
+/**
+ * Classe responsável em controlar a geração de arquivos no formato "csv" dos tipos de contatos.
+ *
+ * @author Adriano Santos
+ */
 
-    public void salvarTipoContato(String[] lineTipoContato){
+public class RelatorioTipoContato {
+    /**
+     * Método responsável em salvar os dados de tipo de contato no formato csv no caminho informado
+     * pela variável <code>pathsalvarTipoContato</code>.
+     *
+     * @param lineTipoContato Fesponsável em receber os dados dos tipos contatos e salvar na pasta "temp".     *
+     */
+
+    public void salvarTipoContato(String[] lineTipoContato) {
 
         String pathsalvarTipoContato = "C:\\temp\\relatorio\\TipoContato.csv";
         //criar um Filé para pegar o caminho.
@@ -31,6 +43,12 @@ public class RelatorioTipoContato {
         }
     }
 
+    /**
+     * Método responsável em gerar o relatório de Contato no formato "csv".
+     * Ele está dividido em 2 etapas:
+     * — Ler os dados do arquivo já salvo no variável <code>pathTipoContato</code> usando o método {@link BufferedReader}.
+     * — Escrever os dados num novo arquivo usando o método {@link BufferedWriter}.
+     */
     public void gerarRelatorioTipoContato() {
 
         String pathTipoContato = "C:\\temp\\relatorio - TipoContato.csv";

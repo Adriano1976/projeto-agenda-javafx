@@ -1,8 +1,16 @@
 package com.projetos.agenda.model;
 
 import jakarta.persistence.*;
+
 import java.io.Serializable;
 
+/**
+ * <p>Classe principal responsável pelos atributos, métodos construtores e métodos de acesso.
+ * Ela também serve como modelo para o mapeamento da classe <code>Cidade</code> pelo Hibernate na implementação
+ * e manutenção da tabela Cidade.</p>
+ *
+ * @author Adriano Santos
+ */
 @Entity
 @Table(name = "cidade")
 public class Cidade implements Serializable {
@@ -19,9 +27,20 @@ public class Cidade implements Serializable {
     @Column(name = "cep", length = 8, nullable = false)
     private Long cep;
 
+    /**
+     * <h3>Método construtor básico.</h3>
+     */
     public Cidade() {
     }
 
+    /**
+     * <h3>Método construtor com parâmetro</h3>
+     *
+     * @param id        Código de identificação da cidade
+     * @param descricao Nome da cidade
+     * @param uf        Estado da cidade
+     * @param cep       Cep da cidade
+     */
     public Cidade(Long id, String descricao, String uf, Long cep) {
         this.id = id;
         this.descricao = descricao;
@@ -68,6 +87,11 @@ public class Cidade implements Serializable {
         this.cep = cep;
     }
 
+    /**
+     * <p>Método responsável em informar os objetos na classe Cidade.</p>
+     *
+     * @return Retorna todos os dados de contato do tipo <code>String</code> ao ser chamado.
+     */
     @Override
     public String toString() {
         return descricao;

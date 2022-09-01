@@ -10,20 +10,29 @@ import javafx.util.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe responsával em conferir validar se o campo está vazio ou não, e enviar uma mensagem ao usuário.
+ *
+ * @author Adriano Santos
+ */
 public class ValidarCampo {
     private static final Tooltip tooltip = new Tooltip("Campo obrigatório");
 
-
+    /**
+     * Método responsável em checar SE o campo está vazio e não permitir que o formulário seja salvo com o campo vazio.
+     *
+     * @param nodes Responsável em receber o estado de cada campo e manipular o objeto recebido.
+     * @return retorna um valor booleano, informando se o campo está vazio ou não.
+     */
     public static boolean checarCampoVazio(Node... nodes) {
         List<Node> camposFalha = new ArrayList<>();
 
         tooltip.setStyle(
                 "-fx-background-color: linear-gradient(#000, #B22222);" +
-                "-fx-font-wight: bold;"
+                        "-fx-font-wight: bold;"
         );
 
         tooltip.setShowDelay(Duration.seconds(0));
-//        ValidaExibeToolTip.tempoToolTip(tooltip);
 
         for (Node nodeFor : nodes) {
 

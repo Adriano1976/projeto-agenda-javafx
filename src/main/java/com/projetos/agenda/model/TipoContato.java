@@ -4,6 +4,14 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 
+/**
+ * <p>Classe principal responsável pelos atributos, métodos construtores e métodos de acesso.
+ * Ela também serve como modelo para o mapeamento da classe <code>TipoContato</code> pelo
+ * Hibernade na implementação e manutenção da tabela na base de dados.</p>
+ *
+ * @author Adriano Santos
+ *
+ */
 @Entity
 @Table(name = "tipo_contato")
 public class TipoContato implements Serializable {
@@ -33,6 +41,9 @@ public class TipoContato implements Serializable {
         this.descricao = descricao;
     }
 
+    /**
+     * @return Retorna uma ‘string’ com o nome do contato.
+     */
     @Override
     public String toString() {
         return descricao;

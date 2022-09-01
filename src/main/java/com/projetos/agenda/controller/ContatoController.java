@@ -6,7 +6,10 @@ import com.projetos.agenda.dao.CrudGenericoDao;
 import com.projetos.agenda.model.Cidade;
 import com.projetos.agenda.model.Contato;
 import com.projetos.agenda.model.TipoContato;
-import com.projetos.agenda.util.*;
+import com.projetos.agenda.util.Alerta;
+import com.projetos.agenda.util.MascaraCampo;
+import com.projetos.agenda.util.RelatorioContato;
+import com.projetos.agenda.util.ValidarCampo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,6 +27,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/**
+ * Classe responsável em controlar a relação entre o formalário e a base de dados.
+ *
+ * @author Adriano Santos
+ */
 public class ContatoController implements Initializable, ICadastro {
     @FXML
     public Label lbTitulo;
@@ -125,18 +133,33 @@ public class ContatoController implements Initializable, ICadastro {
         MascaraCampo.mascaraTelefone(tfTelefone1);
     }
 
+    /**
+     * Método responsável em preparar os campos para receber novos dados.
+     *
+     * @param actionEvent Responsável em receber uma ação de um evento ao ser clicado.
+     */
     @FXML
     public void incluirResgistro(ActionEvent actionEvent) {
         limparCamposFormulario();
-        tfUf.clear();
-        tfCep.clear();
     }
 
+    /**
+     * <p>Método responsável em solicitar o salvamento do registro, informado no formulário, numa base de dados,
+     * se as condições de cada campo for validade.
+     * Para isso, é feito primeiro a validação do campo antes de ser salvo, pois se tiver vazio, ele não salva
+     * os campos em branco caso sejam obrigatório.
+     * Depois da validação, as informações são identificadas em seus respctivos campos e salvas tanto
+     * na base de dados como também em um arquivo com a extensão csv.
+     * Porém se ocorrer algum erro de gravação ou campo vazio, será passado uma mensagem ao usuário</p>
+     *
+     * @param actionEvent Responsável em receber uma ação de um evento ao ser clicado.
+     */
     @FXML
     public void salvarResgistro(ActionEvent actionEvent) {
 
-        if (ValidarCampo.checarCampoVazio(tfDescricao, tfSobrenome, tfEndereco, tfBairro,
-                tfNumero, tfEmail, tfTelefone1, tfTelefone2, dpNascimento)) {
+        // Verificar e validar os campos. Se por a caso esteja vazio, será emitido uma mensagem ao usuário
+        if (ValidarCampo.checarCampoVazio(tfDescricao, tfSobrenome, tfEndereco, tfBairro, tfCep,
+                tfNumero, cbCidade, tfUf, cbTipoContato, tfEmail, tfTelefone1, tfTelefone2, dpNascimento)) {
 
             Contato contato = new Contato();
 
@@ -175,14 +198,16 @@ public class ContatoController implements Initializable, ICadastro {
                     String.valueOf(contato.getSexo()),
             };
 
+            // Salvando os dados num arquivo com extensão csv.
             relatorioContato.salvarContato(lines);
 
+            // Emitir uma mensagem ao usuário se os dados forma salvos ou não.
             if (dao.salvar(contato) && contatoDao.liberarInclusao(contato)) {
                 Alerta.msgInformacao("Registro gravado com sucesso!");
-                atualizarTabela();
             } else {
                 Alerta.msgInformacao("Ocorreu um erro ao tentar gravar o registro!");
             }
+            // Atualizar as informações da tabela e limpar os campos.
             atualizarTabela();
             limparCamposFormulario();
 
@@ -191,6 +216,12 @@ public class ContatoController implements Initializable, ICadastro {
         }
     }
 
+    /**
+     * Método responsável em solicitar a exlusão do registro, identificado no formulário, da base de dados
+     * se a condição for validada.
+     *
+     * @param actionEvent Responsável em receber uma ação de um evento ao ser clicado.
+     */
     @FXML
     public void excluirResgistro(ActionEvent actionEvent) {
         if (Alerta.msgConfirmaExclusao(tfDescricao.getText())) {
@@ -202,21 +233,43 @@ public class ContatoController implements Initializable, ICadastro {
         }
     }
 
+    /**
+     * Método responsável em chamar o método {@code atualizarTabela} ao ser chamado
+     * pelo usuário num evento ao usar oo digitar um caracter no campo pesquisa.
+     *
+     * @param keyEvent Responsável em receber uma ação de um evento ao ser clicado.
+     */
     @FXML
     public void filtrarRegistro(KeyEvent keyEvent) {
         atualizarTabela();
     }
 
+    /**
+     * Método responsável em chamar o método {@code setCamposFormulario} ao ser chamado
+     * pelo usuário num evento ao clicar na tabela.
+     *
+     * @param mouseEvent Responsável em receber uma ação de um evento ao ser clicado.
+     */
     @FXML
     public void clicarTabela(MouseEvent mouseEvent) {
         setCamposFormulario();
     }
 
+    /**
+     * Método responsável em chamar o método {@code setCamposFormulario} ao ser chamado
+     * pelo usuário num evento ao clicar no teclado.
+     *
+     * @param keyEvent Responsável em receber uma ação de um evento ao ser clicado.
+     */
     @FXML
     public void moverTabela(KeyEvent keyEvent) {
         setCamposFormulario();
     }
 
+    /**
+     * Método responsável em controlar e criar as colunas com os nomes e tamanho na tabela do formulário,
+     * preenche-la com as informações salvos no banco de dados.
+     */
     @Override
     public void criarColunasTabela() {
         // Colunas que aparecerão na tabela.
@@ -260,6 +313,9 @@ public class ContatoController implements Initializable, ICadastro {
         });
     }
 
+    /**
+     * Método responsável em mostrar no formulário as informações salvas no banco de dados ao ser chamada.
+     */
     @Override
     public void atualizarTabela() {
         observableList.clear();
@@ -271,6 +327,10 @@ public class ContatoController implements Initializable, ICadastro {
         tableView.getSelectionModel().selectFirst();
     }
 
+    /**
+     * <p>Método responsável em recuperar as informações dos tipos de contatos da base dados e
+     * preencher os compos devidamente identificado ao ser chamado por outro método.</p>
+     */
     @Override
     public void setCamposFormulario() {
         if (!tableView.getItems().isEmpty()) {
@@ -303,8 +363,12 @@ public class ContatoController implements Initializable, ICadastro {
         }
     }
 
+    /**
+     * <p>Método responsável em limpar os campos do formulário ao ser chamado por outro método.</p>
+     */
     @Override
     public void limparCamposFormulario() {
+        tfId.clear();
         tfDescricao.clear();
         tfSobrenome.clear();
         tfEndereco.clear();

@@ -21,6 +21,11 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/**
+ * <p>Classe Responsável em controlar e manipular os menus e ações da tela principal</p>
+ *
+ * @author Adriano Santos
+ */
 public class TelaPrincipalController implements Initializable {
 
     @FXML
@@ -85,50 +90,100 @@ public class TelaPrincipalController implements Initializable {
 
     }
 
+    /**
+     * Método responsável em chamar o método {@code abrirFormulario} para abrir o formulario "contato_view".
+     *
+     * @param actionEvent Responsável em receber um evento.
+     */
     @FXML
     public void acessarContato(ActionEvent actionEvent) {
         abrirFormulario("contato_view");
     }
 
+    /**
+     * Método responsável em chamar o método {@code abrirFormulario} para abrir o formulario "tipo_contato_view".
+     *
+     * @param actionEvent Responsável em receber um evento.
+     */
     @FXML
     public void acessarTipoContato(ActionEvent actionEvent) {
         abrirFormulario("tipo_contato_view");
     }
 
+    /**
+     * Método responsável em chamar o método {@code abrirFormulario} para abrir o formulario "cidade_view".
+     *
+     * @param actionEvent Responsável em receber um evento.
+     */
     @FXML
     public void acessarCidade(ActionEvent actionEvent) {
         abrirFormulario("cidade_view");
     }
 
+    /**
+     * Método responsável em encerrar o programa.
+     *
+     * @param actionEvent Responsável em receber um evento.
+     */
     @FXML
     public void acessarSair(ActionEvent actionEvent) {
         System.exit(0);
     }
 
+    /**
+     * Método responsável em solicitar outro método para gerar um relatório geral.
+     *
+     * @param actionEvent Responsável em receber um evento.
+     */
     @FXML
     public void acessarRelatorioContatoGeral(ActionEvent actionEvent) {
         relatorioContato.gerarRelatorioContato();
     }
 
+    /**
+     * Método responsável em solicitar outro método para gerar um relatório de contato.
+     *
+     * @param actionEvent Responsável em receber um evento.
+     */
     @FXML
     public void acessarRelatorioContatoEndereco(ActionEvent actionEvent) {
         relatorioContato.gerarRelatorioContato();
     }
 
+    /**
+     * Método responsável em solicitar outro método para gerar um relatório com os telefones de contatos.
+     *
+     * @param actionEvent Responsável em receber um evento.
+     */
     @FXML
     public void acessarRelatorioContatoTelefone(ActionEvent actionEvent) {
         relatorioContato.gerarRelatorioContato();
     }
 
+    /**
+     * Método responsável em solicitar outro método para gerar um relatório dos tipos de contatos.
+     *
+     * @param actionEvent Responsável em receber um evento.
+     */
     @FXML
     public void acessarRelatorioContatoTipo(ActionEvent actionEvent) {
         relatorioTipoContato.gerarRelatorioTipoContato();
     }
 
+    /**
+     * Método responsável em mostrar informações sobre o sistema.
+     *
+     * @param actionEvent Responsável em receber um evento.
+     */
     @FXML
     public void acessarSobreSistema(ActionEvent actionEvent) {
     }
 
+    /**
+     * Método responsável em controlar e abrir o formulário quando for chamado por outro método.
+     *
+     * @param formulario Responsável em receber os comandos para abrir um determinado formulário.
+     */
     public void abrirFormulario(String formulario) {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(formulario + ".fxml")));

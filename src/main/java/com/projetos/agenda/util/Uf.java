@@ -3,11 +3,20 @@ package com.projetos.agenda.util;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * Classe responsável por controlar e gerar as Unidades Federativas (UF).
+ *
+ * @author Adriano Santos
+ */
 public class Uf {
-    private static ObservableList<String> observableList;
 
+    /**
+     * Método responsável observar a solicitação do usuário e devolver a resposta desejada.
+     *
+     * @return Retorna uma Unidade Federativa (UF)
+     */
     public static ObservableList gerarUf() {
-        observableList = FXCollections.observableArrayList(
+        return FXCollections.observableArrayList(
                 "AC",
                 "AL",
                 "AP",
@@ -35,6 +44,5 @@ public class Uf {
                 "TO",
                 "DF"
         );
-        return observableList;
     }
 }
