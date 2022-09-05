@@ -6,10 +6,7 @@ import com.projetos.agenda.dao.CrudGenericoDao;
 import com.projetos.agenda.model.Cidade;
 import com.projetos.agenda.model.Contato;
 import com.projetos.agenda.model.TipoContato;
-import com.projetos.agenda.util.Alerta;
-import com.projetos.agenda.util.MascaraCampo;
-import com.projetos.agenda.util.RelatorioContato;
-import com.projetos.agenda.util.ValidarCampo;
+import com.projetos.agenda.util.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -89,6 +86,8 @@ public class ContatoController implements Initializable, ICadastro {
     protected final RelatorioContato relatorioContato = new RelatorioContato();
     private final ObservableList<Contato> observableList = FXCollections.observableArrayList();
 
+    private final TextFieldFormatter formatter = new TextFieldFormatter();
+
     private Contato objetoSelecionado = new Contato();
 
     public ContatoController() {
@@ -130,7 +129,7 @@ public class ContatoController implements Initializable, ICadastro {
         ckAtivo.setSelected(true);
 
         MascaraCampo.mascaraNumero(tfNumero);
-        MascaraCampo.mascaraTelefone(tfTelefone1);
+//        MascaraCampo.mascaraTelefone(tfTelefone1);
     }
 
     /**
@@ -175,8 +174,10 @@ public class ContatoController implements Initializable, ICadastro {
             contato.setCidade(cbCidade.getSelectionModel().getSelectedItem());
             contato.setTipoContato(cbTipoContato.getSelectionModel().getSelectedItem());
             contato.setEmail(tfEmail.getText());
-            contato.setTelefone1(Long.parseLong(tfTelefone1.getText()));
-            contato.setTelefone2(Long.parseLong(tfTelefone2.getText()));
+            String tfTelefone1Valido = formatter.getCaracteresValidos(tfTelefone1.getText());
+            contato.setTelefone1(Long.parseLong(tfTelefone1Valido));
+            String tfTelefone2Valido = formatter.getCaracteresValidos(tfTelefone1.getText());
+            contato.setTelefone2(Long.parseLong(tfTelefone2Valido));
             LocalDate dataNascimento = dpNascimento.getValue();
             contato.setNascimento(dataNascimento);
             contato.setAtivo(ckAtivo.isSelected());
@@ -264,6 +265,22 @@ public class ContatoController implements Initializable, ICadastro {
     @FXML
     public void moverTabela(KeyEvent keyEvent) {
         setCamposFormulario();
+    }
+
+    @FXML
+    public void tfTelefone1(KeyEvent keyEvent) {
+        formatter.setMask("(##)#####-####");
+        formatter.setCaracteresValidos("0123456789");
+        formatter.setTf(tfTelefone1);
+        formatter.formatter();
+    }
+
+    @FXML
+    public void tfTelefone2(KeyEvent keyEvent) {
+        formatter.setMask("(##)#####-####");
+        formatter.setCaracteresValidos("0123456789");
+        formatter.setTf(tfTelefone2);
+        formatter.formatter();
     }
 
     /**
