@@ -10,6 +10,8 @@ import java.util.ArrayList;
  */
 
 public class RelatorioTipoContato {
+
+    private final DataLocal dataLocal = new DataLocal();
     /**
      * Método responsável em salvar os dados de tipo de contato no formato csv no caminho informado
      * pela variável <code>pathsalvarTipoContato</code>.
@@ -31,11 +33,13 @@ public class RelatorioTipoContato {
         // FileWriter — Stream de escrita de caracteres em arquivos, acrescentando ao arquivo existente.
         try (BufferedWriter bufferedWritersalvarTipoContato = new BufferedWriter(new FileWriter(pathNewFilesalvarTipoContato, true))) {
 
+            bufferedWritersalvarTipoContato.write(dataLocal.getDateTime() + "; ");
             // faz o for e escreve tudo no arquivo da String pathNewFile
-            for (String linesalvarTipoContato : lineTipoContato) {
-                bufferedWritersalvarTipoContato.write("- " + linesalvarTipoContato);
-                bufferedWritersalvarTipoContato.newLine();
+            for (String lineSTC : lineTipoContato) {
+                bufferedWritersalvarTipoContato.write(lineSTC + "; ");
+
             }
+            bufferedWritersalvarTipoContato.newLine();
 
         } catch (IOException e) {
             Alerta.msgInformacao("Foi gerado um erro durante a criação do arquivo!");
@@ -72,15 +76,16 @@ public class RelatorioTipoContato {
             boolean sucess = new File(pathfullTipoContato + "\\Agenda").mkdir();
             // Criando novo arquivo .csv
             String pathNewFileTipoContato = pathfullTipoContato + "\\Agenda\\relatorioTipoContato.csv";
-            // FileWriter — Stream de escrita de caracteres em arquivos, acrescentando ao arquivo existente.
 
             // FileWriter — Stream de escrita de caracteres em arquivos, creando/ recriando o arquivo.
-            try (BufferedWriter bufferedWriterTipoContato = new BufferedWriter(new FileWriter(pathNewFileTipoContato, true))) {
+            try (BufferedWriter bufferedWriterTipoContato = new BufferedWriter(new FileWriter(pathNewFileTipoContato))) {
 
-                for (String file : lines) {
-                    bufferedWriterTipoContato.write("- " + file);
+                for (String fileGRTC : lines) {
+                    bufferedWriterTipoContato.write(fileGRTC);
                     bufferedWriterTipoContato.newLine();
                 }
+                bufferedWriterTipoContato.newLine();
+
                 Alerta.msgInformacao(
                         "Relatório Tipo Contato criado com sucesso!\nLocal: C:\\Users\\ADRIANO\\Dropbox\\PC (2)\\Documents\\Agenda"
                 );

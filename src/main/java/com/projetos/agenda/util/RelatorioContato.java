@@ -9,6 +9,8 @@ import java.util.ArrayList;
  * @author Adriano Santos
  */
 public class RelatorioContato {
+
+    private final DataLocal dataLocal = new DataLocal();
     /**
      * Método responsável em salvar os dados de contato no formato csv no caminho informado
      * pela variável <code>pathsalvarContato</code>.
@@ -30,10 +32,11 @@ public class RelatorioContato {
         try (BufferedWriter bufferedWritersalvarContato = new BufferedWriter(new FileWriter(pathNewFileSalvarContato, true))) {
 
             // faz o for e escreve tudo no arquivo da String pathNewFile
-            for (String line : lineContato) {
-                bufferedWritersalvarContato.write("- " + line);
-                bufferedWritersalvarContato.newLine();
+            bufferedWritersalvarContato.write(dataLocal.getDateTime() + "; ");
+            for (String lineSC : lineContato) {
+                bufferedWritersalvarContato.write(lineSC + "; ");
             }
+            bufferedWritersalvarContato.newLine();
 
         } catch (IOException e) {
             Alerta.msgInformacao("Foi gerado um erro durante a criação do arquivo!");
@@ -70,15 +73,16 @@ public class RelatorioContato {
             boolean sucess = new File(pathfullContato + "\\Agenda").mkdir();
             // Criando novo arquivo .csv
             String pathNewFileContato = pathfullContato + "\\Agenda\\relatorioContato.csv";
-            // FileWriter — Stream de escrita de caracteres em arquivos, acrescentando ao arquivo existente.
 
             // FileWriter — Stream de escrita de caracteres em arquivos, creando/ recriando o arquivo.
-            try (BufferedWriter bufferedWriterContato = new BufferedWriter(new FileWriter(pathNewFileContato, true))) {
+            try (BufferedWriter bufferedWriterContato = new BufferedWriter(new FileWriter(pathNewFileContato))) {
 
-                for (String file : lines) {
-                    bufferedWriterContato.write("- " + file);
+                for (String fileGRC : lines) {
+                    bufferedWriterContato.write(fileGRC);
                     bufferedWriterContato.newLine();
                 }
+                bufferedWriterContato.newLine();
+
                 Alerta.msgInformacao(
                         "Relatório Contato criado com sucesso!\nLocal: C:\\Users\\ADRIANO\\Dropbox\\PC (2)\\Documents\\Agenda"
                 );
