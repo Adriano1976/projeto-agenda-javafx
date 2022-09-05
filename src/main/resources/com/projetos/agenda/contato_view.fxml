@@ -35,8 +35,8 @@
       <ComboBox fx:id="cbCidade" layoutX="20.0" layoutY="111.0" opacity="0.7" prefHeight="25.0" prefWidth="265.0" promptText="Cidade" />
       <TextField fx:id="tfUf" editable="false" layoutX="300.0" layoutY="111.0" prefHeight="25.0" prefWidth="80.0" promptText="UF" />
       <TextField fx:id="tfCep" editable="false" layoutX="394.0" layoutY="111.0" prefHeight="25.0" prefWidth="202.0" promptText="CEP" />
-      <TextField fx:id="tfTelefone1" layoutX="20.0" layoutY="155.0" prefHeight="25.0" prefWidth="160.0" promptText="Telefone 1" />
-      <TextField fx:id="tfTelefone2" layoutX="196.0" layoutY="155.0" prefHeight="25.0" prefWidth="160.0" promptText="Telefone 2" />
+      <TextField fx:id="tfTelefone1" layoutX="20.0" layoutY="155.0" onKeyReleased="#tfTelefone1" prefHeight="25.0" prefWidth="160.0" promptText="Telefone 1" />
+      <TextField fx:id="tfTelefone2" layoutX="196.0" layoutY="155.0" onKeyReleased="#tfTelefone2" prefHeight="25.0" prefWidth="160.0" promptText="Telefone 2" />
       <ComboBox fx:id="cbTipoContato" layoutX="371.0" layoutY="155.0" opacity="0.7" prefHeight="25.0" prefWidth="225.0" promptText="Tipo de Contato" />
       <TextField fx:id="tfEmail" layoutX="20.0" layoutY="201.0" prefHeight="25.0" prefWidth="314.0" promptText="Email" />
       <RadioButton fx:id="rbFeminino" layoutX="350.0" layoutY="205.0" mnemonicParsing="false" opacity="0.7" text="Feminino">
