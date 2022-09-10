@@ -62,7 +62,15 @@ Nesse projeto, foi desenvolvido um aplicativo desktop para o cadastro, atualiza�
 
 ## 🎯 Documentação Navegável Javadoc
 
-Essa <a href="https://adriano1976.github.io/agenda-javadoc/com.projetos.agenda/com/projetos/agenda/package-summary.html" target="_blank">Documentação Javadoc</a>,  tem por objetivo facilitar o entendimento dos componentes do projeto e navegando por dentro dele entre as classes, métodos e pacotes.
+Essa <a href="https://adriano1976.github.io/agenda-javadoc/com.projetos.agenda/com/projetos/agenda/package-summary.html" target="_blank">Documentação JavaDoc</a>,  tem por objetivo facilitar o entendimento dos componentes do projeto e navegando por dentro dele entre as classes, métodos e pacotes.
+
+A Documentação dos códigos fontes, é uma necessidade universal em vários paradigmas ou plataformas de desenvolvimento. Dessa forma, precisamos gerar e manipular de uma forma eficiente todos os comentários em formato de documentação de códigos, visando com isso, facilitar a reutilização futura desses comentários como fonte geradora de conhecimentos acerca das classes, atributos e métodos.
+
+Seu funcionamento baseia-se na inserção de textos explicativos em forma de um comentário especial, que antecedem um escopo de uma classe ou método, tendo assim, a responsabilidade de apresentar o mesmo.
+
+Seu funcionamento é através do uso de marcação de documentos com doclets, gerando arquivos nos formatos HTML, SGML, XML ou RTF. Tais marcações são feitas através de comentários, contendo tags especiais que especificam quais informações serão inseridas, com objetivo de manter uma massa de conhecimento reutilizável em qualquer projeto que faça uso da classe em questão.
+
+Vale ressaltar, que podemos combinar tags da própria especificação HTML, com as tags oferecidas pelo JavaDoc, tornando possível à criação de documentos completos gerados a partir dos comentários do próprio código. Portanto, veja e conheça a anatomia do projeto por meio da <a href="https://adriano1976.github.io/agenda-javadoc/com.projetos.agenda/com/projetos/agenda/package-summary.html" target="_blank">Documentação JavaDoc</a>.
 
 
 ## 📉 Gráficos UML do projeto.
