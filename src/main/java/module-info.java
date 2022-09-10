@@ -19,7 +19,7 @@ module com.projetos.agenda {
     opens com.projetos.agenda.icons to javafx.fxml;
     opens com.projetos.agenda.dao to javafx.fxml;
     opens com.projetos.agenda.controller to javafx.fxml;
-    opens com.projetos.agenda.model to java.persistence, org.hibernate.orm.core, javafx.base;
+    opens com.projetos.agenda.model to jakarta.persistence, org.hibernate.orm.core, javafx.base;
 
     exports com.projetos.agenda;
     exports com.projetos.agenda.controller;
