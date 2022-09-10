@@ -2,7 +2,7 @@
 
 ![agenda 2](https://user-images.githubusercontent.com/17755195/187983261-4128c119-a609-4c9a-8d14-540ef1bc8ff8.png)
 
-Nesse projeto, foi desenvolvido um aplicativo desktop para o cadastro, atualização, leitura e exclusão de contatos, sendo basicamente uma agenda de uso pessoal. Foi elaborado e seguindo as instruções doProfessor Crenilson no seu canal do YouTube. Porém, tive que fazer algumas adaptações durante a sua construção devido as atualizações das dependências e plug-ins, como também as diferenças existente na IDE Intellij. Mas mesmo assim, conseguir fazer com que a aplicações funcionasse da mesmo forma aplicando os conhecimentos adquiridos durante os curso da Universidade, Udemy e da DIO.
+Nesse projeto, foi desenvolvido um aplicativo desktop para o cadastro, atualização, leitura e exclusão de contatos, sendo basicamente uma agenda de uso pessoal. Foi elaborado e seguindo as instruções doProfessor Crenilson no seu canal do YouTube. Porém, tive que fazer algumas adaptações durante a sua construção devido as atualizações das dependências e plug-ins, como também as diferenças existente na IDE Intellij. Mas mesmo assim, conseguir fazer com que a aplicações funcionasse da mesmo forma aplicando os conhecimentos adquiridos durante os curso da Universidade, Udemy e da DIO. E por fim, fazendo a sua <a href="https://adriano1976.github.io/agenda-javadoc/com.projetos.agenda/com/projetos/agenda/package-summary.html" target="_blank">Documentação com Javadoc</a> com o auxílio da IDE Intellij.
 
 ## 🛠️ Ferramentas utilizadas na criação deste projeto:
 
@@ -59,6 +59,11 @@ Nesse projeto, foi desenvolvido um aplicativo desktop para o cadastro, atualiza�
 * Etapa 43: Tooltip: Validando os campos.
 * Etapa 44: Criação de Logs.
 * Etapa 45: Escrevendo a documentação usando Javadoc.
+
+## 🎯 Documentação Navegável Javadoc
+
+Essa <a href="https://adriano1976.github.io/agenda-javadoc/com.projetos.agenda/com/projetos/agenda/package-summary.html" target="_blank">Documentação Javadoc</a>,  tem por objetivo facilitar o entendimento dos componentes do projeto e navegando por dentro dele entre as classes, métodos e pacotes.
+
 
 ## 📉 Gráficos UML do projeto.
 
