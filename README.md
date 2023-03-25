@@ -12,7 +12,7 @@ Nesse projeto, foi desenvolvido um aplicativo desktop para o cadastro, atualiza�
 * MySQL - Banco de dados da aplicação.
 * Hibernate - Automatização na construção das tabelas.
 
-## Por que devo aprender a trabalhar com o Framework Hibernate?
+## Por que devo trabalhar com o Framework Hibernate?
 
 O Hibernate é um dos frameworks mais populares para mapeamento objeto-relacional em Java. Ele simplifica a tarefa de persistir objetos Java em bancos de dados relacionais, permitindo que você trabalhe com objetos Java em vez de SQL.
 
