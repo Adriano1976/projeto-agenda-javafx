@@ -12,6 +12,24 @@ Nesse projeto, foi desenvolvido um aplicativo desktop para o cadastro, atualiza�
 * MySQL - Banco de dados da aplicação.
 * Hibernate - Automatização na construção das tabelas.
 
+## Por que devo aprender a trabalhar com o Framework Hibernate?
+
+O Hibernate é um dos frameworks mais populares para mapeamento objeto-relacional em Java. Ele simplifica a tarefa de persistir objetos Java em bancos de dados relacionais, permitindo que você trabalhe com objetos Java em vez de SQL.
+
+Existem várias razões pelas quais você deve aprender a trabalhar com o Hibernate:
+
+* Produtividade: O Hibernate torna o desenvolvimento de aplicativos Java mais rápido e fácil, reduzindo a quantidade de código que você precisa escrever e facilitando a manutenção do código.
+
+* Flexibilidade: O Hibernate permite que você trabalhe com diferentes bancos de dados relacionais sem precisar mudar o código. Isso significa que você pode mudar de banco de dados facilmente, se necessário, sem ter que reescrever o código.
+
+* Segurança: O Hibernate é projetado para ajudar a evitar vulnerabilidades de segurança, como injeção de SQL.
+
+* Desempenho: O Hibernate é altamente otimizado para desempenho e pode ajudar a melhorar a escalabilidade e a velocidade do seu aplicativo.
+
+* Comunidade: O Hibernate é um framework de código aberto com uma grande comunidade de usuários. Isso significa que você pode encontrar muitos recursos, documentação e suporte disponíveis online.
+
+Em resumo, aprender a trabalhar com o Hibernate pode ajudar a tornar o desenvolvimento de aplicativos Java mais fácil, rápido, seguro e eficiente.
+
 ## 🛠️ Etapas da construção do projeto:
 
 * Etapa 1: Organizando o projeto - Padrão MVC.
