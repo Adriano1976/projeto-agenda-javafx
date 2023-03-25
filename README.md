@@ -14,6 +14,8 @@ Nesse projeto, foi desenvolvido um aplicativo desktop para o cadastro, atualiza�
 
 ## Por que devo trabalhar com o Framework Hibernate?
 
+![hibernate](https://user-images.githubusercontent.com/17755195/227721558-e3000857-ee41-4ad0-8b34-97c2a0cf4c3e.png)
+
 O Hibernate é um dos frameworks mais populares para mapeamento objeto-relacional em Java. Ele simplifica a tarefa de persistir objetos Java em bancos de dados relacionais, permitindo que você trabalhe com objetos Java em vez de SQL.
 
 Existem várias razões pelas quais você deve aprender a trabalhar com o Hibernate:
