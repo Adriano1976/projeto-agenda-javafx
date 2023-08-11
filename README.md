@@ -113,12 +113,12 @@ Vale ressaltar, que podemos combinar tags da própria especificação HTML, com 
 
 Nesse gráfico mostra as classes, métodos e suas dependências entre eles.
 
-<div align="center">
-<img width=100% src="https://capsule-render.vercel.app/api?type=waving&color=87CEFA&height=120&section=footer"/>**** 
-</div>
-
 ![Agenda - diagrama UML](https://user-images.githubusercontent.com/17755195/187984100-2eaa2eef-35ee-42fa-83c7-e32400bd7df6.png)
 
 ## 🎁 Expressões de gratidão
 
 Gostaria de agradecer ao [Professor Crenilson](https://www.youtube.com/c/ProfessorCrenilson) por ter disponibilizado este curso de JavaFX de forma gratuita no YouTube, bem como pelo seu empenho e dedicação em cada aula ministrada.
+
+<div align="center">
+<img width=100% src="https://capsule-render.vercel.app/api?type=waving&color=87CEFA&height=120&section=footer"/>**** 
+</div>
